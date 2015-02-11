@@ -1,0 +1,19 @@
+<h1>Project List</h1>
+
+<h2> <% @projects.current.name  %> </h2>
+<% @projects.each do |project| %>
+          <tr>
+            <td><%=project.name%></td>
+            <td><%=story.description%></td>
+            <td><%=story.point%></td>
+            <td><%=story.assignment%></td>
+            <td><%=story.signup%></td>
+            <td><%=story.status%></td>
+           </tr>
+<% end %>
+
+
+
+
+
+
