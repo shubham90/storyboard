@@ -1,0 +1,1 @@
+ROLES = {admin: 1, developer: 0}
