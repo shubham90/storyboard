@@ -11,10 +11,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150211015239) do
+ActiveRecord::Schema.define(version: 20150211023410) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "projects", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "stories", force: :cascade do |t|
+    t.string   "name",                       null: false
+    t.text     "description"
+    t.integer  "stage",          default: 0
+    t.integer  "points",         default: 0
+    t.integer  "signup_user_id"
+    t.integer  "project_id"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  create_table "stories_users", force: :cascade do |t|
+    t.integer  "story_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "stories_users", ["story_id"], name: "index_stories_users_on_story_id", using: :btree
+  add_index "stories_users", ["user_id"], name: "index_stories_users_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name",                                null: false
