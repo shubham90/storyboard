@@ -15,7 +15,7 @@
 # gem 'pg'
 #
 default: &default
-  adapter: postgresql
+  adapter: mysql2
   encoding: unicode
   # For details on connection pooling, see rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
@@ -24,8 +24,8 @@ default: &default
 development:
   <<: *default
   database: storyboard_development
-  username: postgres
-  password:
+  username: root
+  password: RwmgjBE1
   host: localhost
   port: 5432
 
@@ -33,8 +33,8 @@ development:
 test:
   <<: *default
   database: storyboard_test
-  username: postgres
-  password:
+  username: root
+  password: RwmgjBE1
   host: localhost
   port: 5432
 
