@@ -5,10 +5,10 @@
  	<tr>
         <td><%=story.name%></td>
 	    <td><%=story.description%></td>
-	    <td><%=story.point%></td>
-	    <td><%=story.assignment%></td>
-	    <td><%=story.signup%></td>
-	    <td><%=story.status%></td>
+	    <td><%=story.points%></td>
+	    <td><%=story.developers.map{|d|d.name}.join(',')%></td>
+	    <td><%=story.signup_user.name%></td>
+	    <td><%=story.stage%></td>
 	</tr>
 <% end %>
      
