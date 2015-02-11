@@ -14,3 +14,5 @@ Story.seed do |s|
   s.stage = 2
   s.project_id = 1
 end
+
+Story.find(1).users << User.find(1)
