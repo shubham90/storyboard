@@ -7,7 +7,7 @@
 	    <td><%=story.description%></td>
 	    <td><%=story.points%></td>
 	    <td><%=story.users.map{|d|d.name}.join(',')%></td>
-	    <td><%=story.signup_user.name%></td>
+	    <td><%story.signup_user ? story.signup_user.name : "" %></td>
 	    <td><%=story.stage%></td>
 	</tr>
 <% end %>
