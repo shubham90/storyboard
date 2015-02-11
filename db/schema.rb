@@ -11,52 +11,51 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150211023410) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+ActiveRecord::Schema.define(version: 20150211034347) do
 
   create_table "projects", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name",       limit: 255, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "stories", force: :cascade do |t|
-    t.string   "name",                       null: false
-    t.text     "description"
-    t.integer  "stage",          default: 0
-    t.integer  "points",         default: 0
-    t.integer  "signup_user_id"
-    t.integer  "project_id"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.string   "name",           limit: 255,               null: false
+    t.text     "description",    limit: 65535
+    t.integer  "stage",          limit: 4,     default: 0
+    t.integer  "points",         limit: 4,     default: 0
+    t.integer  "signup_user_id", limit: 4
+    t.integer  "project_id",     limit: 4
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
   end
 
   create_table "stories_users", force: :cascade do |t|
-    t.integer  "story_id"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "story_id",   limit: 4
+    t.integer  "user_id",    limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   add_index "stories_users", ["story_id"], name: "index_stories_users_on_story_id", using: :btree
   add_index "stories_users", ["user_id"], name: "index_stories_users_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "name",                                null: false
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
+    t.string   "name",                   limit: 255,              null: false
+    t.integer  "role",                   limit: 4,   default: 0
+    t.integer  "project_id",             limit: 4
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
+    t.string   "email",                  limit: 255, default: "", null: false
+    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          limit: 4,   default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.inet     "current_sign_in_ip"
-    t.inet     "last_sign_in_ip"
+    t.string   "current_sign_in_ip",     limit: 255
+    t.string   "last_sign_in_ip",        limit: 255
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
