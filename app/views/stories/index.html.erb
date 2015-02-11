@@ -1,14 +1,14 @@
 <h1>Stories List</h1>
 
-<h2> <% @projects.current.name  %> </h2>
+<h2> <% current_project.name  %> </h2>
 <% @stories.each do |story| %>
-          <tr>
-            <td><%=story.name%></td>
+ 	<tr>
+        <td><%=story.name%></td>
 	    <td><%=story.description%></td>
 	    <td><%=story.point%></td>
 	    <td><%=story.assignment%></td>
 	    <td><%=story.signup%></td>
 	    <td><%=story.status%></td>
-	   </tr>
+	</tr>
 <% end %>
      

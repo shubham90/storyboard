@@ -22,4 +22,5 @@ end
   def current_project
     @current_project ||= current_user.project
   end
+  helper_method :current_project
 end
