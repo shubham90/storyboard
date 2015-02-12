@@ -1,37 +1,38 @@
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <p class="navbar-brand text-right" align=center>Story Board<br/><span class="navbar-subheading">Story list</span>
-            </p>
-        </div>
-    </div>
-</br></br></br>
-<div class="container>
-        <%= render "shared/_nav1.html" %>
-	<%= render "shared/nav2.html" %>
-	<%= render "shared/nav3.html" %>
-
-	<h2> <%= current_project.name  %> </h2>
-	<div class="container">
-
-	<table border='1' class="table table-hover">
-	  <tr>
-    	    <th class="active">Name</th>
-	    <th class="active">Description</th>
-	    <th class="active">Points</th>
-	    <th class="active">Signed-up UserName</th>
-	    <th class="active">Stage</th>
-	  </tr>
-
-	<% @stories.each do |story| %>
- 	  <tr>
-            <td><%=story.name%></td>
-	    <td><%=story.description%></td>
-	    <td><%=story.points%></td>
-	    <td><%=story.users.map{|d|d.name}.join(',')%></td>
-	    <td><%story.signup_user ? story.signup_user.name : "" %></td>
-	    <td><%=story.stage%></td>
-          </tr>
-	<% end %>
-	</table>
-	</div>
+<div class="container">
+  <p class="navbar-brand text-right" align=center>Story Board
+  <br>
+  </br>
+  <span class="navbar-subheading">Story list</span>
+  </p>
 </div>
+</div>
+
+
+
+<h2> <%= current_project.name  %> </h2>
+<div class="container">
+
+  <table border='1' class="table table-hover">
+    <tr>
+      <th class="active">Name</th>
+      <th class="active">Description</th>
+      <th class="active">Points</th>
+      <th class="active">Assigned Developers</th>
+      <th class="active">Signed-up Developer</th>
+      <th class="active">Stage</th>
+    </tr>
+
+    <% @stories.each do |story| %>
+      <tr>
+        <td><%=story.name%></td>
+        <td><%=story.description%></td>
+        <td><%=story.points%></td>
+        <td><%=story.users.map{|d|d.name}.join(',')%></td>
+        <td><%story.signup_user ? story.signup_user.name : "" %></td>
+        <td><%=story.stage%></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
