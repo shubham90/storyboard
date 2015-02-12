@@ -4,4 +4,7 @@ class StoriesController < ApplicationController
     @stories = current_user.project.stories
   end
 
+  def show
+    @story = Story.find(params[:id])
+  end
 end
