@@ -93,7 +93,7 @@ class StoriesController < ApplicationController
     end
   end
 
-  def unsign_up
+  def un_signup
     if (@story.is_user_assigned?(current_user))
       current_project.stories.where(signup_user: current_user).update_all(signup_user_id: nil)
       redirect_to project_stories_path, notice: 'Story was successfully unsignuped'
