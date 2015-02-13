@@ -7,5 +7,8 @@ class ProjectsController < ApplicationController
   def show
   end
 
+def set_project
+  	 @projects=Project.find(params[:id])
+  end
 
 end

@@ -14,9 +14,11 @@
 					</div><!-- /input-group -->
 				</div><!-- /.col-lg-6 -->
 				
+				<%if current_user.is_admin?%>
 				<div class="col-lg-3">
-					<div class="navbar-text navbar-right"><a href="/admin_project_new_form.html.erb" role="button" class="btn btn-primary btn-small">New Project</a></div>
+					<div class="navbar-text navbar-right"><a href="#" role="button" class="btn btn-primary btn-small">New Project</a></div>
 				</div>
+				<% end %>
 			</div><!-- /.row -->
 			<div class="row">
 			<br></br>
@@ -31,11 +33,17 @@
 
 				<% @projects.each do |project| %>
 
+				<%if current_user.is_admin?%>
 				<tr>
-					<td><a href="#"><%=project.name%></a></td>
+					<td><%= link_to(project.name, project_path(project))%></td>
 					<td><%=project.description%></td>
 				</tr>
-				
+				<%else%>
+				<tr>
+					<td><%= link_to(project.name, project_path(project))%></td>
+					<td><%=project.description%></td>
+				</tr>
+				<%end%>
 				<% end %>
 		
 			</table>
