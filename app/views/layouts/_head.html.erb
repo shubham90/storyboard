@@ -1,4 +1,5 @@
 <header class="navbar navbar-default navbar-static-top" role="banner">
+		
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6 pull-left">
@@ -6,7 +7,20 @@
 						<h2>Story Board</h2>  
 					</div>
 				</div>
-				<div class="col-md-6 pull-right">	
+				
+				<div class="col-md-4">	
+					<div class="navbar-text navbar-right">
+					<ul class="nav nav-pills">
+						<li role="presentation" class="active"><a href="#">Projects</a></li>
+  						<li role="presentation" ><a href="#">Admins</a></li>
+  						<li role="presentation"><a href="#">Developers</a></li>	 
+					</ul>
+					
+					</div>
+				</div>
+
+
+				<div class="col-md-2 pull-right">	
 					<div class="navbar-text navbar-right">
 						<span class="glyphicon glyphicon-user"></span>
 						<%=link_to(current_user.name, "#")%>

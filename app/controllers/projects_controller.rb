@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-	before_action :set_project, only: [:show, :destroy]
+	before_action :set_project, only: [:show, :destroy, :edit, :update]
 
   def index
     @projects = Project.all
@@ -34,8 +34,27 @@ class ProjectsController < ApplicationController
     end
   end
 
+<<<<<<< HEAD
   private
    
+=======
+
+ def edit
+  end
+
+  def update
+    respond_to do |format|
+      if @story.update(story_params)
+        format.html { redirect_to [current_project, @story], notice: 'Recipe was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: 'edit' }
+        format.json { render json: @story.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+>>>>>>> Project Layout
   def set_project
   	 @project = Project.find(params[:id])
   end
