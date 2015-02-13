@@ -13,6 +13,8 @@
 			</div><!-- /.row -->
 		
 			<br></br>
+
+			<%if current_user.is_admin?%>
 			
 			<div class="row">
 			
@@ -23,6 +25,7 @@
 				<a href="#" role="button" class="btn btn-primary btn-small">New Project</a>
 				
 			</div>
+			<% end %>
 			<div class="row">
 			<br></br>
 				

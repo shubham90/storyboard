@@ -16,6 +16,8 @@
 <div class="col-lg-3">
   <div class="navbar-text navbar-right">
     <%= link_to("New Story", new_project_story_path, role: "button", class: "btn btn-primary btn-small")%>
+      
+        <a href="#" role="button" class="btn btn-info btn-small">StoryBoard</a>
   </div>
 </div><!-- /.row -->
 </div>
@@ -42,7 +44,6 @@
       <th class="active"><b>Name</b></th>
       <th class="active"><b>Description</b></th>
       <th class="active"><b>Points</b></th>
-
       <th class="active"><b>Signed-up Developers</b></th>
       <th class="active"><b>Stage</b></th>
       <th class="active"><b>Assigned Stories</b></th>
@@ -53,7 +54,6 @@
         <td><%= link_to(story.name, project_story_path(current_project, story))%></td>
         <td><%=story.description%></td>
         <td><%=story.points%></td>
-       
         <td><%=story.signup_user ? story.signup_user.name : "" %></td>
         <td><%=story.stage%></td>
         <td>

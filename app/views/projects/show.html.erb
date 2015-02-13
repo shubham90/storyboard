@@ -23,8 +23,13 @@
 			  </div>
 			  
 					<br><br>
-			
-			  <button type="submit" class="btn btn-primary">View Stories</button>
+
+			  <%if(current_user.is_admin?)%>
+			  	<a href="#" role="button" class="btn btn-danger btn-small">Delete</a>
+			  	<a href="#" role="button" class="btn btn-info btn-small">Edit</a>
+			  <% else %>
+			  	<a href="#" role="button" class="btn btn-primary btn-small">View Stories</a>
+			  <% end %>
 			  
 			<a href="javascript:history.back()"><button class="btn btn-default">Back</button></a>
 			</div>
