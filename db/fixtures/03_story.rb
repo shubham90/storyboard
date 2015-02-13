@@ -15,4 +15,4 @@ Story.seed do |s|
   s.project_id = 1
 end
 
-Story.find(1).users << User.find(1)
+Story.find(1).developers<< User.find(1)
