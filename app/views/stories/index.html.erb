@@ -28,10 +28,6 @@
   <% end %>
 
 
-
-
-
-
   <ul class="nav nav-tabs">
     <li role="presentation" class="active"><a href="#">All</a></li>
     <li role="presentation"><a href="#">Assigned</a></li>
@@ -51,7 +47,7 @@
 
     <% @stories.each do |story| %>
       <tr>
-        <td><%=story.name%></td>
+        <td><%= link_to(story.name, project_story_path(current_project, story))%></td>
         <td><%=story.description%></td>
         <td><%=story.points%></td>
        

@@ -1,4 +1,4 @@
-<%= form_for [current_project, @story] do |f| %>
+<%= form_for [current_project, @story], html: {class: "col-md-6"} do |f| %>
   <% if @story.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@story.errors.count, "error") %> prohibited this story from being saved:</h2>
@@ -11,30 +11,30 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :name%><br>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, class: "form-control" %>
   </div>
   
-  <div class="field">
+  <div class="form-group">
     <%= f.label :description %><br>
-    <%= f.text_field :description %>
+    <%= f.text_area :description, class: "form-control" %>
   </div>
 
-  
-  
-  <div class="field">
+  <div class="form-group">
      <%= f.label :stage %><br />
-     <%= select("story", "stage", [["s1",1],["s2",2]])%>
+     <%= f.select(:stage, options_for_select([['a','a'],['b','b'],['c','c']]), {}, {class: "form-control"} )%>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :points %><br />
-    <%= f.number_field :points%>
+    <%= f.number_field :points, class: "form-control" %>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit class: "btn btn-success" %>
+    <%= link_to 'Show', project_story_path(current_project, @story) ,role: "button", class: "btn btn-primary"%> 
+    <%= link_to 'Back', project_stories_path(current_project, @story) ,role: "button", class: "btn btn-default"%>
   </div>
 
 <% end %>

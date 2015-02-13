@@ -5,15 +5,26 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-def after_sign_in_path_for(resource)
-  if current_user.is_admin?
-    rails_admin.dashboard_path
-  else
-    project_stories_path(current_project.id)
+  def after_sign_in_path_for(resource)
+    if current_user.is_admin?
+      rails_admin.dashboard_path
+    else
+      project_stories_path(current_project.id)
+    end
   end
-end
+
+  layout :layout_by_resource
 
   protected
+
+  def layout_by_resource
+    if devise_controller?
+      "devise"
+    else
+      "application"
+    end
+  end
+
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) << :name
