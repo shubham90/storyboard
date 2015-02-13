@@ -1,0 +1,43 @@
+<div class="row">
+  <div class="navbar-text navbar-right pull-right">
+      <%= link_to("New Admin", new_admin_path, role: "button", class: "btn btn-primary btn-small")%>
+  </div>
+</div>
+
+
+<div class="row">
+  <br></br>
+  <% if flash[:notice] %>
+    <div class="alert alert-success" role="alert"><%= flash[:notice] %></div>
+  <% end %>
+  <% if flash[:alert] %>
+    <div class="alert alert-danger" role="alert"><%= flash[:alert] %></div>
+  <% end %>
+
+
+  
+
+  <table border='1' class="table table-bordered table-striped">
+    <tr>
+      <th class="active"><b>Name</b></th>
+      <th class="active"><b>Email</b></th>
+      <th class="active"><b>Delete</b></th>
+    </tr>
+
+    <% @admins.each do |admin| %>
+      <tr>
+        <td><%= link_to(admin.name, admin_path(admin))%></td>
+        <td><%= admin.email%></td>       
+        <td><%= link_to 'Delete Developer', admin_path(admin),
+                    method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger", role: "button"  %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
+
+
+
+
+
+

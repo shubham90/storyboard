@@ -10,7 +10,7 @@ class DevelopersController < ApplicationController
   end
 
   def create
-     @developer = User.new(user_params)
+     @developer = User.new(developer_params)
      @developer.role = ROLES[:developer]
 
     if @developer.save
