@@ -34,10 +34,7 @@ class ProjectsController < ApplicationController
     end
   end
 
-<<<<<<< HEAD
-  private
-   
-=======
+
 
  def edit
   end
@@ -54,7 +51,6 @@ class ProjectsController < ApplicationController
     end
   end
 
->>>>>>> Project Layout
   def set_project
   	 @project = Project.find(params[:id])
   end
