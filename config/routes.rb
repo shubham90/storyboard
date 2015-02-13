@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       member do
         get 'assign'
         get 'signup'
+        get 'unsign_up'
       end 
     end
   end

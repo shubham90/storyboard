@@ -66,8 +66,10 @@ class StoriesController < ApplicationController
       @story.developers << current_user
       msg = "Developer Assigned"
     elsif params[:story][:assign].to_i == 0
-      msg = "Developer Deassigned"
+      
       @story.developers.destroy(current_user)
+      @story.update(signup_user_id: nil)
+      msg = "Developer Unassigned"
     else
 
     end
@@ -90,6 +92,16 @@ class StoriesController < ApplicationController
       redirect_to project_stories_path, alert: 'Assign the story to signup '
     end
   end
+
+  def unsign_up
+    if (@story.is_user_assigned?(current_user))
+      current_project.stories.where(signup_user: current_user).update_all(signup_user_id: nil)
+      redirect_to project_stories_path, notice: 'Story was successfully unsignuped'
+    else
+      redirect_to project_stories_path, alert: 'Assign the story to signup '
+    end
+  end
+
 
   private
   # Use callbacks to share common setup or constraints between actions.
