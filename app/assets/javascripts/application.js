@@ -15,40 +15,6 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require_tree .
-				
 
-				$(document).ready(function(){	
-
-					$(".assigned").click(function() { 
-						
-						if($(this).is(":checked")) {
-							$.ajax({
-								url: '/projects/1/stories/1/assign.json',
-								type: 'POST',
-								data: {id: $(this).attr("data-story-id"), project_id: $(this).attr("data-project-id"), story: {assign: 1}},
-								success : function(data){
-		
-
-									alert("Developer is successfully assigned")		
-								}
-							});		
-						} else {
-							$.ajax({
-								url: '/projects/1/stories/1/assign.json',
-								type: 'POST',
-								data: {id: $(this).attr("data-story-id"), project_id: $(this).attr("data-project-id"), story: {assign: 0}},
-								success : function(data){
-									console.log("I am de-assigned")
-									alert("Developer is successfully de-assigned")			
-								}
-							});	
-								
-						}
-
-
-						
-					}); 
-				});	
-			
 
 			

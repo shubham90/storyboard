@@ -34,9 +34,10 @@ class ProjectsController < ApplicationController
     end
   end
 
-
+  private
+   
   def set_project
-  	 @project=Project.find(params[:id])
+  	 @project = Project.find(params[:id])
   end
 
 

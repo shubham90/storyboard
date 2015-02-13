@@ -1,68 +1,57 @@
 <h1>Project List</h1>
+<div class="row">
+  <div class="input-group">
+    <input type="text" class="form-control" placeholder="Search for...">
+    <span class="input-group-btn">
+      <button class="btn btn-default" type="button">Go!</button>
+    </span>
+  </div><!-- /input-group -->
+</div><!-- /.row -->
+
+<br></br>
+<% if flash[:notice] %>
+  <div class="alert alert-success" role="alert"><%= flash[:notice] %></div>
+<% end %>
+<% if flash[:alert] %>
+  <div class="alert alert-danger" role="alert"><%= flash[:alert] %></div>
+<% end %>
+
+<%if current_user.is_admin?%>
+
+  <div class="row">
+
+    <a href="#" role="button" class="btn btn-primary btn-small">Add Admin</a>
+
+    <a href="#" role="button" class="btn btn-primary btn-small">Add Developer</a>
+    <%= link_to("New Project", new_project_path, role: "button", class: "btn btn-primary btn-small")%>
+
+  </div>
+<% end %>
+
+<div class="row">
+  <br></br>
 
 
-			<div class="row">
+  <table border='1' class="table table-bordered table-striped">
+    <tr>
+      <th class="active"><b>Title</b></a></th>
+      <th class="active"><b>Description</b></th>
 
-					<div class="input-group">
-						<input type="text" class="form-control" placeholder="Search for...">
-						<span class="input-group-btn">
-							<button class="btn btn-default" type="button">Go!</button>
-						</span>	
-					</div><!-- /input-group -->
+    </tr>
+    <% if !@projects.nil? then @projects.each do |project| %>
+      <%if current_user.is_admin?%>
+        <tr>
+          <td><%= link_to(project.name, project_path(project))%></td>
+          <td><%=project.description%></td>
+        </tr>
+      <%else%>
+        <tr>
+          <td><%= link_to(project.name, project_path(project))%></td>
+          <td><%=project.description%></td>
+        </tr>
+      <%end%>
+    <% end %>
+  <% end %>
 
-			</div><!-- /.row -->
-		
-			<br></br>
-
-			<% if flash[:notice] %>
-   				 <div class="alert alert-success" role="alert"><%= flash[:notice] %></div>
-  			<% end %>
- 			<% if flash[:alert] %>
-   				 <div class="alert alert-danger" role="alert"><%= flash[:alert] %></div>
-  			<% end %>
-
-			<%if current_user.is_admin?%>
-			
-			<div class="row">
-			
-				<a href="#" role="button" class="btn btn-primary btn-small">Add Admin</a>
-	
-	            <a href="#" role="button" class="btn btn-primary btn-small">Add Developer</a>
-
-				<%= link_to("New Project", new_project_path, role: "button", class: "btn btn-primary btn-small")%>
-				
-			</div>
-			<% end %>
-			<div class="row">
-			<br></br>
-				
-			
-			<table border='1' class="table table-bordered table-striped">
-				<tr>
-					<th class="active"><b>Title</b></a></th>
-					<th class="active"><b>Description</b></th>
-				
-				</tr>
-
-				<% if !@projects.nil? then @projects.each do |project| %>
-
-				<%if current_user.is_admin?%>
-				<tr>
-					<td><%= link_to(project.name, project_path(project))%></td>
-					<td><%=project.description%></td>
-				</tr>
-				<%else%>
-				<tr>
-					<td><%= link_to(project.name, project_path(project))%></td>
-					<td><%=project.description%></td>
-				</tr>
-				<%end%>
-				<% end %>
-				<% end %>
-		
-			</table>
-
-			</div>
-				
-			
-
+  </table>
+</div>

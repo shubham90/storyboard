@@ -43,23 +43,20 @@ class StoriesController < ApplicationController
   def create
     @story = current_project.stories.build(story_params)
 
-    respond_to do |format|
-      if @story.save
-        format.html { redirect_to project_stories_path, notice: 'Story was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @recipe }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @story.errors, status: :unprocessable_entity }
-      end
+    if @story.save
+      redirect_to project_stories_path, notice: 'Story was successfully created.'
+    else
+      render action: 'new'
     end
+
   end
 
   def destroy
     @story.destroy
-    respond_to do |format|
-      format.html { redirect_to project_stories_path, notice: 'Story was successfully deleted' }
-      format.json { head :no_content }
-    end
+
+    redirect_to project_stories_path, notice: 'Story was successfully deleted'
+
+
   end
 
   def assign
@@ -67,7 +64,6 @@ class StoriesController < ApplicationController
       @story.developers << current_user
       msg = "Developer Assigned"
     elsif params[:story][:assign].to_i == 0
-      
       @story.developers.destroy(current_user)
       @story.update(signup_user_id: nil)
       msg = "Developer Unassigned"
@@ -75,17 +71,17 @@ class StoriesController < ApplicationController
 
     end
 
-    respond_to do |format|
-      if @story.reload && @story.save!
-        format.html { redirect_to project_stories_path, notice: msg }
-      else
-        format.html { redirect_to project_stories_path, status: :unprocessable_entity }
-      end
+
+    if @story.save
+      format.html { redirect_to project_stories_path, notice: msg }
+    else
+      format.html { redirect_to project_stories_path, status: :unprocessable_entity }
     end
+
   end
 
   def signup
-    if (@story.is_user_assigned?(current_user))
+    if @story.developers.exists? current_user.id
       current_project.stories.where(signup_user: current_user).update_all(signup_user_id: nil)
       @story.update(signup_user_id: current_user.id)
       redirect_to project_stories_path, notice: 'Story was successfully signuped'
