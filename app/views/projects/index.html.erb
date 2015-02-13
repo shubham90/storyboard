@@ -1,19 +1,46 @@
 <h1>Project List</h1>
 
-<h2> <% @projects.current.name  %> </h2>
-<% @projects.each do |project| %>
-          <tr>
-            <td><%=project.name%></td>
-            <td><%=story.description%></td>
-            <td><%=story.point%></td>
-            <td><%=story.assignment%></td>
-            <td><%=story.signup%></td>
-            <td><%=story.status%></td>
-           </tr>
-<% end %>
 
+			<div class="row">
+				
+			
+				<div class="col-lg-9">
+				<br/>
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="Search for...">
+						<span class="input-group-btn">
+							<button class="btn btn-default" type="button">Go!</button>
+						</span>	
+					</div><!-- /input-group -->
+				</div><!-- /.col-lg-6 -->
+				
+				<div class="col-lg-3">
+					<div class="navbar-text navbar-right"><a href="/admin_project_new_form.html.erb" role="button" class="btn btn-primary btn-small">New Project</a></div>
+				</div>
+			</div><!-- /.row -->
+			<div class="row">
+			<br></br>
+				
+			
+			<table border='1' class="table table-bordered table-striped">
+				<tr>
+					<th class="active"><b>Title</b></a></th>
+					<th class="active"><b>Description</b></th>
+				
+				</tr>
 
+				<% @projects.each do |project| %>
 
+				<tr>
+					<td><a href="#"><%=project.name%></a></td>
+					<td><%=project.id%></td>
+				</tr>
+				
+				<% end %>
+		
+			</table>
 
-
+			</div>
+				
+			
 
