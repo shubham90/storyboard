@@ -27,6 +27,7 @@
 			  <%if(current_user.is_admin?)%>
 			  	<%= link_to 'Destroy', project_path(@project),
                     method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger", role: "button"  %>
+                <a href="#" role="button" class="btn btn-primary btn-md">View Stories</a>
 			  <% else %>
 			  	<a href="#" role="button" class="btn btn-primary btn-md">View Stories</a>
 			  <% end %>

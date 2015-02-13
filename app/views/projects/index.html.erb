@@ -44,7 +44,7 @@
 				
 				</tr>
 
-				<% @projects.each do |project| %>
+				<% if !@projects.nil? then @projects.each do |project| %>
 
 				<%if current_user.is_admin?%>
 				<tr>
@@ -57,6 +57,7 @@
 					<td><%=project.description%></td>
 				</tr>
 				<%end%>
+				<% end %>
 				<% end %>
 		
 			</table>

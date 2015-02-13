@@ -5,7 +5,7 @@ class ProjectsController < ApplicationController
     @projects = Project.all
   end
 
-   def new
+  def new
     @project = Project.new
   end
 
@@ -20,9 +20,9 @@ class ProjectsController < ApplicationController
     end
   end
 
+
   def create
     @project = Project.new(project_params)
-
     respond_to do |format|
       if @project.save
         format.html { redirect_to projects_path, notice: 'Project was successfully created.' }
@@ -34,9 +34,11 @@ class ProjectsController < ApplicationController
     end
   end
 
+
   def set_project
   	 @project=Project.find(params[:id])
   end
+
 
   def project_params
     params.require(:project).permit(:name, :description)
