@@ -26,12 +26,15 @@
   <% if flash[:notice] %>
     <div class="alert alert-success" role="alert"><%= flash[:notice] %></div>
   <% end %>
+  <% if flash[:alert] %>
+    <div class="alert alert-danger" role="alert"><%= flash[:alert] %></div>
+  <% end %>
 
 
   <ul class="nav nav-tabs">
-    <li role="presentation" class="active"><a href="#">All</a></li>
-    <li role="presentation"><a href="#">Assigned</a></li>
-    <li role="presentation"><a href="#">Signed up</a></li>
+    <li role="presentation" class="active"><%=link_to("Assigned", project_stories_path({scope: "Assigned"}) )%></li>
+    <li role="presentation"><%=link_to("Assigned", project_stories_path({scope: "Assigned"}) )%></li>
+    <li role="presentation"><%=link_to("Assigned", project_stories_path({scope: "Signed up"}) )</li>
   </ul>
 
   <table border='1' class="table table-bordered table-striped">
@@ -51,11 +54,11 @@
         <td><%=story.description%></td>
         <td><%=story.points%></td>
        
-        <td><%story.signup_user ? story.signup_user.name : "" %></td>
+        <td><%=story.signup_user ? story.signup_user.name : "" %></td>
         <td><%=story.stage%></td>
         <td>
 
-          <input type="checkbox" name="assign" class= "assigned" checked=<%=story.is_user_assigned?(current_user)%> data-story-id=<%=story.id%> data-project-id=<%=current_project.id%>>
+          <input type="checkbox" name="assign" class= "assigned" <%=story.is_user_assigned?(current_user) ? "checked" : ""%> data-story-id=<%=story.id%> data-project-id=<%=current_project.id%>>
         </td>
       </tr>
     <% end %>

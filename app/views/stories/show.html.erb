@@ -29,7 +29,7 @@
 					<br><br>
 			<%= link_to 'Edit', edit_project_story_path(current_project, @story), class: "btn btn-primary", role: "button" %> 
 			
-			<%= link_to 'Sign Up', edit_project_story_path(current_project, @story), class: "btn btn-success", role: "button" %>
+			<%= link_to 'Sign Up', signup_project_story_path(current_project, @story), class: "btn btn-success", role: "button" %>
 
 			<%= link_to 'Destroy', project_story_path(current_project, @story),
                     method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger", role: "button"  %>
