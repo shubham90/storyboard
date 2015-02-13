@@ -11,9 +11,13 @@
 				<div class="col-md-4">	
 					<div class="navbar-text navbar-right">
 					<ul class="nav nav-pills">
+						<% if current_user.is_admin? %>
 						<li role="presentation" class="active"><%= link_to("Projects", projects_path)%></li>
   						<li role="presentation" ><%= link_to("Admins", admins_path)%></li>
-  						<li role="presentation"><%= link_to("Developers", developers_path)%></li>	
+  						<li role="presentation"><%= link_to("Developers", developers_path)%></li>
+  						<%else%>	
+  						<li role="presentation" class="active"><%= link_to("Projects", projects_path)%></li>
+  						<%end%>
 					</ul>
 					
 					</div>
