@@ -1,0 +1,45 @@
+
+
+<div class="col-md-6">
+			  <div class="form-group">
+				<label for="exampleProject1">Project</label>
+				<p>
+				<%=current_project.name%>
+				</p>
+			  </div>
+			  <div class="form-group">
+				<label for="exampleName1">Name</label>
+				<p>
+				<%=@story.name%>
+				</p>
+			  </div>
+			  <div class="form-group">
+				<label for="exampleDescription1">Description</label>
+				<p><%=@story.description%></p>
+			  </div>
+			  <div class="form-group">
+				<label for="examplePoints1">Points</label>
+				<p>
+				<%=@story.points%>
+				</p>
+			  </div>
+			  <label for="exampleStage1">Stage</label>
+			  <p><%=@story.stage%>
+			  
+					<br><br>
+			<%= link_to 'Edit', edit_project_story_path(current_project, @story), class: "btn btn-primary", role: "button" %> 
+			
+			<%= link_to 'Sign Up', edit_project_story_path(current_project, @story), class: "btn btn-success", role: "button" %>
+
+			<%= link_to 'Destroy', project_story_path(current_project, @story),
+                    method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger", role: "button"  %>
+
+			<%= link_to 'Back', project_stories_path(current_project, @story), class: "btn btn-default", role: "button" %>
+			  
+			</div>
+			<br>
+
+
+
+
+                    

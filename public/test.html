@@ -1,0 +1,191 @@
+<!DOCTYPE HTML>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<html>
+	<head>
+		<title>Story Board</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="Stories Page" />
+
+		<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->		
+		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="css/ie/v9.css" /><![endif]-->
+	</head>
+	<body class="dark-bg">
+		
+		<div class="container">
+			<div class="row">
+				<div class="nav">
+					<h3>Project 1</h3>  
+				</div>
+			
+				<div class="col-lg-9">
+				<br/>
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="Search for...">
+						<span class="input-group-btn">
+							<button class="btn btn-default" type="button">Go!</button>
+						</span>	
+					</div><!-- /input-group -->
+				</div><!-- /.col-lg-6 -->
+				
+				<div class="col-lg-3">
+					<div class="navbar-text navbar-right"><a href="#" role="button" class="btn btn-primary btn-small">New Stories</a></div>
+				</div>
+			</div><!-- /.row -->
+			<div class="row">
+			<br></br>
+			<div class="alert alert-success" role="alert">Do whatever you want to!</div>
+			<div class="alert alert-danger" role="alert">Do whatever you want to!</div>
+			
+	
+				
+			<ul class="nav nav-tabs">
+				<li role="presentation" class="active"><a href="#">All</a></li>
+				<li role="presentation"><a href="#">Assigned</a></li>
+				<li role="presentation"><a href="#">Signed up</a></li>
+			</ul>
+				
+			
+			<table border='1' class="table table-bordered table-striped">
+				<tr>
+					<th class="active"><b>Name</b></th>
+					<th class="active"><b>Description</b></th>
+					<th class="active"><b>Points</b></th>
+					<th class="active"><b>Assigned Developers</b></th>
+					<th class="active"><b>Signed-up Developers</b></th>
+					<th class="active"><b>Stage</b></th>
+					<th class="active"><b>Assigned Stories</b></th>
+				</tr>
+
+				<tr>
+					<td><%=story.name%></td>
+					<td><%=story.description%></td>
+					<td><%=story.points%></td>
+					<td><%=story.users.map{|d|d.name}.join(',')%></td>
+					<td><%story.signup_user ? story.signup_user.name : "" %></td>
+					<td><%=story.stage%></td>
+					<td>
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" name="assign" value="option1" class= "assigned" data-story-id="1">
+							</label>
+						</div>
+					</td>
+				</tr>
+				
+				<tr>
+					<td><%=story.name%></td>
+					<td><%=story.description%></td>
+					<td><%=story.points%></td>
+					<td><%=story.users.map{|d|d.name}.join(',')%></td>
+					<td><%story.signup_user ? story.signup_user.name : "" %></td>
+					<td><%=story.stage%></td>
+					<td>
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" name="assign" value="option1" class= "assigned" data-story-id="1" data-project-id="1">
+							</label>
+						</div>
+					</td>
+				</tr>
+				
+				<tr>
+					<td><%=story.name%></td>
+					<td><%=story.description%></td>
+					<td><%=story.points%></td>
+					<td><%=story.users.map{|d|d.name}.join(',')%></td>
+					<td><%story.signup_user ? story.signup_user.name : "" %></td>
+					<td><%=story.stage%></td>
+					<td>
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" name="assign" value="option1" class= "assigned" data-story-id="1" data-project-id="1">
+							</label>
+						</div>
+					</td>
+				</tr>
+				
+				<tr>
+					<td><%=story.name%></td>
+					<td><%=story.description%></td>
+					<td><%=story.points%></td>
+					<td><%=story.users.map{|d|d.name}.join(',')%></td>
+					<td><%story.signup_user ? story.signup_user.name : "" %></td>
+					<td><%=story.stage%></td>
+					<td>
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" id="blankCheckbox" value="option1" class= "assigned" data-story-id="1" data-project-id="1">
+							</label>
+						</div>
+					</td>
+				</tr>
+				
+				<tr>
+					<td><%=story.name%></td>
+					<td><%=story.description%></td>
+					<td><%=story.points%></td>
+					<td><%=story.users.map{|d|d.name}.join(',')%></td>
+					<td><%story.signup_user ? story.signup_user.name : "" %></td>
+					<td><%=story.stage%></td>
+					<td>
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" id="blankCheckbox" value="option1" class= "assigned" data-story-id="1" data-project-id="1">
+							</label>
+						</div>
+					</td>
+				</tr>
+				
+			</table>
+			</div>
+				
+			<div class="navbar-text navbar-right">
+				<nav>
+					<ul class="pagination">
+						<li>
+							<a href="#" aria-label="Previous">
+								<span aria-hidden="true">&laquo;</span>
+							</a>
+						</li>
+						<li><a href="#">1</a></li>
+						<li><a href="#">2</a></li>
+						<li><a href="#">3</a></li>
+						<li><a href="#">4</a></li>
+						<li><a href="#">5</a></li>
+						<li>
+							<a href="#" aria-label="Next">
+								<span aria-hidden="true">&raquo;</span>
+							</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+			
+			</div>
+		
+			<script type="text/javascript">
+				$(document).ready(function(){
+					$("input:assigned").change(function() { 
+						if($(this).is(":checked")) { 
+							$.ajax({
+								url: '',
+								type: 'POST',
+								data: { id:$(this).attr("id"), project_id:"1", {story:{assign:"1"}} }
+							});
+						} else {
+							$.ajax({
+								url: '',
+								type: 'POST',
+								data: { id:$(this).attr("id"), project_id:"1" , {story:{assign:"0"}}}
+							});
+						}
+					}); 
+				});	
+			</script>
+<!-- Importing the bootstrap JS file and JQuery file -->
+
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	</body>
+</html>

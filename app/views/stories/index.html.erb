@@ -1,38 +1,77 @@
-<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-<div class="container">
-  <p class="navbar-brand text-right" align=center>Story Board
-  <br>
-  </br>
-  <span class="navbar-subheading">Story list</span>
-  </p>
+<div class="row">
+        <div class="nav">
+          <h3><%=current_project.name%></h3>  
+        </div>
+      
+        <div class="col-lg-9">
+        <br/>
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search for...">
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="button">Go!</button>
+            </span> 
+          </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
+        
+        <div class="col-lg-3">
+          <div class="navbar-text navbar-right">
+          <%= link_to("New Story", new_project_story_path, role: "button", class: "btn btn-primary btn-small")%>
+        </div>
+      </div><!-- /.row -->
+
+
+
+<div class="row">
+      <br></br>
+      <% if flash[:notice] %>
+      <div class="alert alert-success" role="alert"><%= flash[:notice] %></div>
+      <% end %>
+
+      
+     
+      
+  
+        
+      <ul class="nav nav-tabs">
+        <li role="presentation" class="active"><a href="#">All</a></li>
+        <li role="presentation"><a href="#">Assigned</a></li>
+        <li role="presentation"><a href="#">Signed up</a></li>
+      </ul>
+
+      <table border='1' class="table table-bordered table-striped">
+        <tr>
+          <th class="active"><b>Name</b></th>
+          <th class="active"><b>Description</b></th>
+          <th class="active"><b>Points</b></th>
+          <th class="active"><b>Assigned Developers</b></th>
+          <th class="active"><b>Signed-up Developers</b></th>
+          <th class="active"><b>Stage</b></th>
+          <th class="active"><b>Assigned Stories</b></th>
+        </tr>
+        
+        <% @stories.each do |story| %>
+        <tr>
+          <td><%=story.name%></td>
+          <td><%=story.description%></td>
+          <td><%=story.points%></td>
+          <td><%=story.developers.map{|d|d.name}.join(',')%></td>
+          <td><%story.signup_user ? story.signup_user.name : "" %></td>
+          <td><%=story.stage%></td>
+          <td>
+           
+            <input type="checkbox" name="assign" class= "assigned" checked=<%=story.is_user_assigned?(current_user)%> data-story-id=<%=story.id%> data-project-id=<%=current_project.id%>>
+          </td>
+        </tr>
+        <% end %>
+        </table>
+        <%= render "stories/pagination"%>
 </div>
-</div>
+
+        
 
 
 
-<h2> <%= current_project.name  %> </h2>
-<div class="container">
 
-  <table border='1' class="table table-hover">
-    <tr>
-      <th class="active">Name</th>
-      <th class="active">Description</th>
-      <th class="active">Points</th>
-      <th class="active">Assigned Developers</th>
-      <th class="active">Signed-up Developer</th>
-      <th class="active">Stage</th>
-    </tr>
 
-    <% @stories.each do |story| %>
-      <tr>
-        <td><%=story.name%></td>
-        <td><%=story.description%></td>
-        <td><%=story.points%></td>
-        <td><%=story.users.map{|d|d.name}.join(',')%></td>
-        <td><%story.signup_user ? story.signup_user.name : "" %></td>
-        <td><%=story.stage%></td>
-      </tr>
-    <% end %>
-  </table>
-</div>
+
 

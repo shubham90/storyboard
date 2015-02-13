@@ -10,6 +10,8 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
+gem "bootstrap-switch-rails"
+
 gem 'turbolinks'
 gem 'slim'
 
@@ -26,5 +28,6 @@ group :development, :test do
   gem 'spring'
   gem 'factory_girl'
   gem 'rspec-rails', '~> 3.0'
+  gem 'quiet_assets'
 end
 

@@ -9,7 +9,7 @@ def after_sign_in_path_for(resource)
   if current_user.is_admin?
     rails_admin.dashboard_path
   else
-    stories_path
+    project_stories_path(current_project.id)
   end
 end
 
