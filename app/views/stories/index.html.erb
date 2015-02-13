@@ -32,9 +32,9 @@
 
 
   <ul class="nav nav-tabs">
-    <li role="presentation" class="active"><%=link_to("Assigned", project_stories_path({scope: "Assigned"}) )%></li>
-    <li role="presentation"><%=link_to("Assigned", project_stories_path({scope: "Assigned"}) )%></li>
-    <li role="presentation"><%=link_to("Assigned", project_stories_path({scope: "Signed up"}) )</li>
+    <li role="presentation" class="active"><%=link_to("All", project_stories_path)%></li>
+    <li role="presentation"><%=link_to("Assigned", project_stories_path({scope: "assigned"}) )%></li>
+    <li role="presentation"><%=link_to("Sign UP", project_stories_path({scope: "signup"}) )%></li>
   </ul>
 
   <table border='1' class="table table-bordered table-striped">

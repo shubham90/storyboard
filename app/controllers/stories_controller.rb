@@ -9,7 +9,7 @@ class StoriesController < ApplicationController
     when "signup"
       @stories = current_user.stories.where(project: current_project, signup_user_id: current_user.id)
     else
-      @stories = current_user.project.stories.includes(:developers)
+      @stories = current_user.project.stories
     end
   end
 
