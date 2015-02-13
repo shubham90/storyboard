@@ -6,10 +6,15 @@
 <div class="col-lg-9">
   <br/>
   <div class="input-group">
-    <input type="text" class="form-control" placeholder="Search for...">
+    <%= form_tag search_project_stories_path(current_project), :method => 'get' do %>
+  
+    <%= text_field_tag :query, params[:query],  class: "form-control", placeholder: "Search for..."%>
     <span class="input-group-btn">
-      <button class="btn btn-default" type="button">Go!</button>
+    <%= submit_tag "Go!", :name => nil, class: "btn btn-default"  %>
     </span> 
+  
+<% end %>
+    
   </div><!-- /input-group -->
 </div><!-- /.col-lg-6 -->
 

@@ -14,7 +14,8 @@ class StoriesController < ApplicationController
   end
 
   def search
-    @stories = current_user.project.stories.where("name ILIKE ?", params[:query])
+    @stories = current_user.project.stories.where("name LIKE '%#{params[:query]}%' OR description LIKE '%#{params[:query]}%'")
+    render 'index'
   end
 
   def show
