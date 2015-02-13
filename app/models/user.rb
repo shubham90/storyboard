@@ -5,6 +5,9 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   belongs_to :project
 
+  scope :developers, -> { where(role: ROLES[:developer]) }
+  scope :admins, -> { where(role: ROLES[:admin]) }
+
   has_many :stories, through: :developer_stories
   has_many :developer_stories
 
