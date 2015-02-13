@@ -2,24 +2,27 @@
 
 
 			<div class="row">
-				
-			
-				<div class="col-lg-9">
-				<br/>
+
 					<div class="input-group">
 						<input type="text" class="form-control" placeholder="Search for...">
 						<span class="input-group-btn">
 							<button class="btn btn-default" type="button">Go!</button>
 						</span>	
 					</div><!-- /input-group -->
-				</div><!-- /.col-lg-6 -->
-				
-				<%if current_user.is_admin?%>
-				<div class="col-lg-3">
-					<div class="navbar-text navbar-right"><a href="#" role="button" class="btn btn-primary btn-small">New Project</a></div>
-				</div>
-				<% end %>
+
 			</div><!-- /.row -->
+		
+			<br></br>
+			
+			<div class="row">
+			
+				<a href="#" role="button" class="btn btn-primary btn-small">Add Admin</a>
+	
+	            <a href="#" role="button" class="btn btn-primary btn-small">Add Developer</a>
+
+				<a href="#" role="button" class="btn btn-primary btn-small">New Project</a>
+				
+			</div>
 			<div class="row">
 			<br></br>
 				
