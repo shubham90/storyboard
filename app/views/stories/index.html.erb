@@ -43,7 +43,7 @@
       <th class="active"><b>Name</b></th>
       <th class="active"><b>Description</b></th>
       <th class="active"><b>Points</b></th>
-      <th class="active"><b>Assigned Developers</b></th>
+
       <th class="active"><b>Signed-up Developers</b></th>
       <th class="active"><b>Stage</b></th>
       <th class="active"><b>Assigned Stories</b></th>
@@ -54,7 +54,7 @@
         <td><%=story.name%></td>
         <td><%=story.description%></td>
         <td><%=story.points%></td>
-        <td><%=story.developers.map{|d|d.name}.join(',')%></td>
+       
         <td><%story.signup_user ? story.signup_user.name : "" %></td>
         <td><%=story.stage%></td>
         <td>
