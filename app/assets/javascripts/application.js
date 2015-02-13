@@ -17,21 +17,17 @@
 //= require_tree .
 				
 
-				$(document).ready(function(){
-					$(".assigned-msg").hide();	
+				$(document).ready(function(){	
 
-					$(".assigned").change(function() { 
+					$(".assigned").click(function() { 
 						
 						if($(this).is(":checked")) {
 							$.ajax({
 								url: '/projects/1/stories/1/assign.json',
 								type: 'POST',
-								data: {id: 1, project_id: 1, story: {assign: 1}},
+								data: {id: $(this).attr("data-story-id"), project_id: $(this).attr("data-project-id"), story: {assign: 1}},
 								success : function(data){
-									$(".assigned-msg").text("Developer is successfully assigned").show().slideDown();
-									setTimeout(function(){
-  										$(".assigned-msg").hide();        
-									}, 3000);
+		
 
 									alert("Developer is successfully assigned")		
 								}
@@ -40,7 +36,7 @@
 							$.ajax({
 								url: '/projects/1/stories/1/assign.json',
 								type: 'POST',
-								data: {id: 1, project_id: 1, story: {assign: 0}},
+								data: {id: $(this).attr("data-story-id"), project_id: $(this).attr("data-project-id"), story: {assign: 0}},
 								success : function(data){
 									console.log("I am de-assigned")
 									alert("Developer is successfully de-assigned")			

@@ -57,8 +57,14 @@
         <td><%=story.signup_user ? story.signup_user.name : "" %></td>
         <td><%=story.stage%></td>
         <td>
+          <%if story.developers.exists?(current_user.id)%>
+            <%= link_to("UnAssign", assign_project_story_path(current_project, story, {story: {assign: 0}}))%>  
+          <%else%>
+            <%= link_to("Assign", assign_project_story_path(current_project, story, {story: {assign: 1}}))%>
+          <%end%>
+          
 
-          <input type="checkbox" name="assign" class= "assigned" <%=story.is_user_assigned?(current_user) ? "checked" : ""%> data-story-id=<%=story.id%> data-project-id=<%=current_project.id%>>
+         
         </td>
       </tr>
     <% end %>

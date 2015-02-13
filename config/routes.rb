@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :projects do 
     resources :stories do
       member do
-        post 'assign'
+        get 'assign'
         get 'signup'
       end 
     end

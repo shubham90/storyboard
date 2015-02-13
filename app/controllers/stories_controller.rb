@@ -5,12 +5,16 @@ class StoriesController < ApplicationController
   def index
     case params[:scope]
     when "assigned"
-      @stories = current_user.stories.where(project: current_project)
+      @stories = current_user.stories.where(project_id: current_project.id)
     when "signup"
       @stories = current_user.stories.where(project: current_project, signup_user_id: current_user.id)
     else
-      @stories = current_user.project.stories
+      @stories = current_project.stories
     end
+  end
+
+  def search
+    @stories = current_user.project.stories.where("name ILIKE ?", params[:query])
   end
 
   def show
@@ -60,7 +64,9 @@ class StoriesController < ApplicationController
   def assign
     if params[:story][:assign].to_i == 1
       @story.developers << current_user
+      msg = "Developer Assigned"
     elsif params[:story][:assign].to_i == 0
+      msg = "Developer Deassigned"
       @story.developers.destroy(current_user)
     else
 
@@ -68,10 +74,9 @@ class StoriesController < ApplicationController
 
     respond_to do |format|
       if @story.reload && @story.save!
-        format.json { render json: @story }
         format.html { redirect_to project_stories_path, notice: msg }
       else
-        format.json { render json: @story.errors, status: :unprocessable_entity }
+        format.html { redirect_to project_stories_path, status: :unprocessable_entity }
       end
     end
   end

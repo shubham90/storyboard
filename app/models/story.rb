@@ -1,6 +1,6 @@
 class Story < ActiveRecord::Base
 
-  scope :assigned, ->(user) { self.is_user_assigned?(user) }
+  
   validates :name, presence: true
 
   belongs_to :project
