@@ -34,7 +34,7 @@
 			<% else %>
 
 			<%= link_to 'Sign Up', signup_project_story_path(current_project, @story), class: "btn btn-success", role: "button" %>
-
+			<%end%>
 
 			<%= link_to 'Destroy', project_story_path(current_project, @story),
                     method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger", role: "button"  %>

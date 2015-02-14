@@ -50,7 +50,9 @@
       <th class="active"><b>Points</b></th>
       <th class="active"><b>Signed-up Developers</b></th>
       <th class="active"><b>Stage</b></th>
+      <%if(!current_user.is_admin?)%>
       <th class="active"><b>Assigned Stories</b></th>
+      <% end %>
     </tr>
 
     <% @stories.each do |story| %>
@@ -60,6 +62,7 @@
         <td><%=story.points%></td>
         <td><%=story.signup_user ? story.signup_user.name : "" %></td>
         <td><%=story.stage%></td>
+        <%if(!current_user.is_admin?)%>
         <td>
           <%if story.developers.exists?(current_user.id)%>
             <%= link_to("UnAssign", assign_project_story_path(current_project, story, {story: {assign: 0}}))%>  
@@ -67,6 +70,7 @@
             <%= link_to("Assign", assign_project_story_path(current_project, story, {story: {assign: 1}}))%>
           <%end%>
         </td>
+        <%end%>
       </tr>
     <% end %>
   </table>
