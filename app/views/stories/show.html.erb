@@ -27,6 +27,8 @@
 			  <p><%=@story.stage%>
 			  
 					<br><br>
+
+			<%if !current_user.is_admin?%>
 			<%= link_to 'Edit', edit_project_story_path(current_project, @story), class: "btn btn-primary", role: "button" %> 
 			<% if current_user== @story.signup_user %>
 			
@@ -38,6 +40,7 @@
 
 			<%= link_to 'Destroy', project_story_path(current_project, @story),
                     method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger", role: "button"  %>
+            <%end%>
 
 			<%= link_to 'Back', project_stories_path(current_project, @story), class: "btn btn-default", role: "button" %>
 			  
