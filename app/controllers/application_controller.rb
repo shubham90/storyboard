@@ -20,18 +20,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  rescue_from Exception do |exception|
-    render_403(exception)
-  end
-
-  def render_403(exception)
-    logger.warn("Message for log.")
-    @error_message = exception.message
-    respond_to do |format|
-      format.html { render template: 'errors/errors', layout: false, status: 500 }
-      format.all { render nothing: true, status: 500 }
-    end
-  end
+  
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) << :name

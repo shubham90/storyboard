@@ -23,15 +23,13 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
-    respond_to do |format|
-      if @project.save
-        format.html { redirect_to projects_path, notice: 'Project was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @project }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
-      end
+
+    if @project.save
+      redirect_to projects_path, notice: 'Project was successfully created.'
+    else
+      render action: 'new'
     end
+
   end
 
 
@@ -57,7 +55,7 @@ class ProjectsController < ApplicationController
 
 
   def project_params
-    params.require(:project).permit(:name, :description, :user_ids)
+    params.require(:project).permit(:name, :description)
   end
 
 end
