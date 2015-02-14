@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
-	before_action :set_project, only: [:show, :destroy, :edit, :update]
-
+  before_action :set_project, only: [:show, :destroy, :edit, :update]
+  before_action :set_unassigned_developers, only: [:new, :edit]
   def index
     @projects = Project.all
   end
@@ -36,28 +36,28 @@ class ProjectsController < ApplicationController
 
 
 
- def edit
+  def edit
   end
 
   def update
-    respond_to do |format|
-      if @story.update(story_params)
-        format.html { redirect_to [current_project, @story], notice: 'Recipe was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @story.errors, status: :unprocessable_entity }
-      end
+    if @project.update(project_params)
+      redirect_to projects_path, notice: 'Project was successfully updated.'
+    else
+      render action: 'edit'
     end
   end
 
   def set_project
-  	 @project = Project.find(params[:id])
+    @project = Project.find(params[:id])
+  end
+
+  def set_unassigned_developers
+    @unassigned_developers=User.where(role: ROLES[:developer], project_id: nil)
   end
 
 
   def project_params
-    params.require(:project).permit(:name, :description)
+    params.require(:project).permit(:name, :description, :user_ids)
   end
 
 end
