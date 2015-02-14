@@ -8,11 +8,7 @@ class ApplicationController < ActionController::Base
   layout :layout_by_resource
 
   def after_sign_in_path_for(resource)
-    if current_user.is_admin?
-      projects_path
-    else
-      project_stories_path(current_project.id)
-    end
+    projects_path
   end
 
 
@@ -29,16 +25,12 @@ class ApplicationController < ActionController::Base
   end
 
   def current_project
-    @current_project ||= current_user.project
+    @current_project ||= Project.find(params[:project_id])
   end
   helper_method :current_project
 
   def user_root_path
-    if current_user.is_admin?
-      projects_path
-    else
-      project_stories_path(current_project.id)
-    end
+    projects_path
   end
   helper_method :user_root_path
 end
