@@ -18,6 +18,12 @@ Rails.application.routes.draw do
   end
   resources :developers
   resources :admins
+
+  
+  get 'profile' => 'profiles#show' 
+  get 'profile/edit' => 'profiles#edit'
+  post 'profile' => 'profiles#update'
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

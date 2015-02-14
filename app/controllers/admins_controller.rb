@@ -1,4 +1,4 @@
-class DevelopersController < ApplicationController
+class AdminsController < ApplicationController
   before_action :authenticate_admin!
   before_action :set_admin, only: [:destroy]
   def index

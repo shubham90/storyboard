@@ -1,0 +1,27 @@
+<div class="col-md-6">
+			  <div class="form-group">
+				<label for="exampleProject1">Name</label>
+				<p>
+				<%=current_user.name%>
+				</p>
+			  </div>
+			  <div class="form-group">
+				<label for="exampleName1">Email</label>
+				<p>
+				<%=current_user.email%>
+				</p>
+			  </div>
+			  <div class="form-group">
+				<label for="exampleDescription1">Role</label>
+				<p><%=ROLES[current_user.role]%></p>
+			  </div>
+			  
+			  
+			  
+					<br><br>
+			<%= link_to 'Change Password', profile_edit_path, class: "btn btn-primary", role: "button" %> 
+			
+			  
+			</div>
+			<br>
+

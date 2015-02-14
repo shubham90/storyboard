@@ -12,9 +12,9 @@
 					<div class="navbar-text navbar-right">
 					<ul class="nav nav-pills">
 						<% if current_user.is_admin? %>
-						<li role="presentation" class="active"><%= link_to("Projects", projects_path)%></li>
-  						<li role="presentation" ><%= link_to("Admins", admins_path)%></li>
-  						<li role="presentation"><%= link_to("Developers", developers_path)%></li>
+						<li role="presentation" class = <%=controller.class == ProjectsController ? "active": ""%>><%= link_to("Projects", projects_path)%></li>
+  						<li role="presentation" class=<%=controller.class == AdminsController ? "active": ""%>><%= link_to("Admins", admins_path)%></li>
+  						<li role="presentation" class=<%=controller.class == DevelopersController ? "active" : ""%> ><%= link_to("Developers", developers_path)%></li>
   						<%else%>	
   						<li role="presentation" class="active"><%= link_to("Projects", projects_path)%></li>
   						<%end%>
@@ -27,7 +27,7 @@
 				<div class="col-md-2 pull-right">	
 					<div class="navbar-text navbar-right">
 						<span class="glyphicon glyphicon-user"></span>
-						<%=link_to(current_user.name, "#")%>
+						<%=link_to(current_user.name, profile_path)%>
 					</div>
 				</div>
 				
