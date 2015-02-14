@@ -1,2 +1,2 @@
 ROLES = {admin: 1, developer: 0, 1 => 'Admin', 0 => 'Developer'}
-STAGES = {'Analysis': 1, 'Ready for dev': 2, 'In dev': 3, 'Dev Complete': 4, 'In Test': 5, 'Complete': 6}
+STAGES = {'Analysis': 0, 'Ready for dev': 1, 'In dev': 2, 'Dev Complete': 3, 'In Test': 4, 'Complete': 5}
