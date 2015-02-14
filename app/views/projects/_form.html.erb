@@ -23,9 +23,9 @@
 
   <div class="form-group">
     <%= f.label :developers %><br>
-    <div class="col-xs-6">
+    
     <%= f.select :user_ids, @unassigned_developers.collect {|x| [x.name, x.id]}, {}, :multiple => true, class: "form-control users-assign"%>
-    </div>
+    
   </div>
 	  
   <div class="actions">

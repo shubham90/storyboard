@@ -23,7 +23,7 @@
 
   <div class="form-group">
      <%= f.label :stage %><br />
-     <%= f.select(:stage, options_for_select([['a','a'],['b','b'],['c','c']]), {}, {class: "form-control"} )%>
+     <%= f.select(:stage, options_for_select(STAGES.collect{|k,v| [k,v]}), {}, {class: "form-control"} )%>
   </div>
 
   <div class="form-group">
@@ -33,8 +33,8 @@
 
   <div class="actions">
     <%= f.submit class: "btn btn-success" %>
-    <%= link_to 'Show', project_story_path(current_project, @story) ,role: "button", class: "btn btn-primary"%> 
-    <%= link_to 'Back', project_stories_path(current_project, @story) ,role: "button", class: "btn btn-default"%>
+     
+    <%= link_to 'Back', project_stories_path(current_project) ,role: "button", class: "btn btn-default"%>
   </div>
 
 <% end %>

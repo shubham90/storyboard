@@ -1,6 +1,6 @@
 class StoriesController < ApplicationController
 
-  before_action :set_story, only: [:show, :edit, :update, :destroy, :assign, :story, :signup]
+  before_action :set_story, only: [:show, :edit, :update, :destroy, :assign, :story, :signup, :un_signup]
 
   def index
     case params[:scope]
@@ -29,15 +29,13 @@ class StoriesController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @story.update(story_params)
-        format.html { redirect_to [current_project, @story], notice: 'Recipe was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @story.errors, status: :unprocessable_entity }
-      end
+
+    if @story.update(story_params)
+      redirect_to project_stories_path(current_project), notice: 'Story was successfully updated.'
+    else
+      render action: 'edit'
     end
+
   end
 
   def create
@@ -54,7 +52,7 @@ class StoriesController < ApplicationController
   def destroy
     @story.destroy
 
-    redirect_to project_stories_path, notice: 'Story was successfully deleted'
+    redirect_to project_stories_path(current_project), notice: 'Story was successfully deleted'
 
 
   end
@@ -73,9 +71,9 @@ class StoriesController < ApplicationController
 
 
     if @story.save
-      format.html { redirect_to project_stories_path, notice: msg }
+      redirect_to project_stories_path(current_project), notice: msg
     else
-      format.html { redirect_to project_stories_path, status: :unprocessable_entity }
+      redirect_to project_stories_path(current_project), status: :unprocessable_entity
     end
 
   end
@@ -91,7 +89,7 @@ class StoriesController < ApplicationController
   end
 
   def un_signup
-    if (@story.is_user_assigned?(current_user))
+    if @story.developers.exists? current_user.id
       current_project.stories.where(signup_user: current_user).update_all(signup_user_id: nil)
       redirect_to project_stories_path, notice: 'Story was successfully unsignuped'
     else

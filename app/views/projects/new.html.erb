@@ -1,31 +1,8 @@
-<h1>New Project</h1>
 
- <%= form_for [@project], html: {class: "col-md-6"} do |f| %>
-  <% if @project.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@project.errors.count, "error") %> :Please check</h2>
+<h3> New Project </h3>
+<div class='row'>
+<%= render 'form' %>
+</div>
 
-      <ul>
-      <% @project.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="form-group">
-    <%= f.label :name%><br>
-    <%= f.text_field :name, class: "form-control" %>
-  </div>
-  
-  <div class="form-group">
-    <%= f.label :description %><br>
-    <%= f.text_area :description, class: "form-control" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit class: "btn btn-success" %>
-  </div><br/>
-  
-  <%= link_to 'Back', projects_path(@project) ,role: "button", class: "btn btn-default"%>
-<%end%>
+ 
