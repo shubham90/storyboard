@@ -29,6 +29,7 @@
 					<th class="active"><b>Add/Remove Developers</b></th>
 					<%end%>
 					<th class="active"><b>Stories</b></th>
+					<th class="active"><b>Burndown Chart</b></th>
 				
 				</tr>
 
@@ -40,6 +41,7 @@
 					<td><%= link_to("Add/Remove Developers", edit_assign_developers_project_path(project))%></td>
 					<%end%>
 					<td><%= link_to("View Stories", project_stories_path(project))%></td>
+					<td><%= link_to("Burndown Chart", :controller => "burndowns", action: "index", :curr_project => project.id, role: "button", class: "btn btn-primary")%> </td>
 				</tr>
 				<% end %>
 				<% end %>

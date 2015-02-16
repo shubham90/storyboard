@@ -1,0 +1,29 @@
+<h1>Burndown Chart</h1>
+
+
+<%require 'gchart'%>
+<%
+data_x= [0,0]
+data_x[0] = @expectedPoints
+data_y= @point
+
+burndown_chart = Gchart.line(
+            :size => '600x400',
+            :bar_colors => ['000000', 'FF0000'],
+            :bg => 'FFFFFF',
+            :legend => ['Expected Time', 'Actual Time'],
+            :data => [data_x, data_y],
+            :legend_position => 'right',
+            :axis_with_labels => [['x'], ['y']],
+            :max_value => @expectedPoints,
+            :min_value => 0,
+            :axis_labels => [["|Analysis|Ready for Dev|In Dev|Dev Complete|In Test|Complete"]],
+            )
+%>
+
+<div align="left" class="container">
+<br/>
+      <img src="<%=burndown_chart%>"/>
+
+</div>
+<a href="javascript:history.back()"><button class="btn btn-default ">Back</button></a>

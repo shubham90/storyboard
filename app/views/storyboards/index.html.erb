@@ -2,18 +2,20 @@
 <hr>
 <br>
 <% @projects.each do |project|%>
+<div class="container">
   <div class="row">
-    <div class="col-lg-12">
-      <h3><%= project.name %></h3>
+    <div class="col col-lg-6 col-lg-6">
+    <h3><%= project.name %></h3>
+      <div class="well">
       <hr>
-      <h4>INCOMPLETE STORIES</h4>
-      <table class="table table-striped">
+      <h4>Incomplete Stories</h4>
+      <table border='0' class="table table-striped">
         <tbody>
           <tr>
-            <th>NAME</th>
-            <th>DESCRIPTION</th>
-            <th>POINTS</th>
-            <th>STAGE</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Points</th>
+            <th>Stage</th>
           </tr>
           <% project.stories.incomplete.each do |story|%>
             <tr>
@@ -25,15 +27,16 @@
           <% end %>
         </tbody>
       </table>
+
       <hr>
-      <h4>COMPLETED STORIES</h4>
+      <h4>Completed Stories</h4>
       <table class="table table-striped">
         <tbody>
           <tr>
-            <th>NAME</th>
-            <th>DESCRIPTION</th>
-            <th>POINTS</th>
-            <th>STAGE</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Points</th>
+            <th>Stage</th>
           </tr>
           <%project.stories.complete.each do |story|%>
             <tr>
@@ -45,31 +48,34 @@
           <% end %>
         </tbody>
       </table>
-      <h4>SUMMARY</h4>
-      <div class="col-lg-3">
-        <table class="table table-striped">
+      </div>
+      </div>
+      
+      <div class="col col-lg-6 col-sm-6">
+      <br/><br/><br/>
+        <div class="well">
+        <h4>Summary</h4>
+        <table  border='0' class="table">
           <tbody>
             <tr>
               <th>
-                STAGE
+                Stage
           </th>
               <th>
-                TOTAL
+                Total Points
           </th>
             </tr>
             <% project.summary.each do |stage, total|%>
               <tr>
-                <td>
-                  <%= STAGES.invert[stage]%>
-                </td>
-                <td>
-                  <%= total%>
-                </td>
+                <td><h4><span class="label label-default"><%= STAGES.invert[stage]%></span></h4></td>
+                <td><h4><label><%= total%></label></h4></td>
               </tr>
             <%end%>
           </tbody>
         </table>
+        </div>
       </div>
     </div>
   </div>
+
 <% end %>

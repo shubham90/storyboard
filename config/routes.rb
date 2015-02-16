@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   get 'profile/edit' => 'profiles#edit'
   post 'profile' => 'profiles#update'
   get 'dashboard' => 'profiles#index'
+  get 'burndown' => 'burndowns#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

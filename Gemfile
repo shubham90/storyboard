@@ -17,6 +17,7 @@ gem 'slim'
 
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
+gem "googlecharts", :require => "gchart"
 
 gem 'devise'
 gem 'bootstrap-sass', '~> 3.2.0'
