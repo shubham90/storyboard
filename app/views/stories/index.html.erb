@@ -41,7 +41,7 @@
       <th class="active"><b>Signed-up Developers</b></th>
       <th class="active"><b>Stage</b></th>
       <%if(!current_user.is_admin? and assigned_project?)%>
-        <th class="active"><b>Assigned Stories</b></th>
+        <th class="active"><b>Assign/UnAssign</b></th>
       <% end %>
     </tr>
     <% @stories.each do |story| %>
@@ -50,13 +50,13 @@
         <td><%=story.description%></td>
         <td><%=story.points%></td>
         <td><%=story.signup_user ? story.signup_user.name : "" %></td>
-        <td><%=story.stage%></td>
+        <td><%=STAGES.invert[story.stage].to_s%></td>
         <%if(!current_user.is_admin? and assigned_project?)%>
           <td>
             <%if story.developers.exists?(current_user.id)%>
-              <%= link_to("UnAssign", assign_project_story_path(current_project, story, {story: {assign: 0}}))%>
+              <%= link_to("UnAssign", assign_project_story_path(current_project, story, {story: {assign: 0}}), role: "button", class: "btn btn-danger")%>
             <%else %>
-              <%= link_to("Assign", assign_project_story_path(current_project, story, {story: {assign: 1}}))%>
+              <%= link_to("Assign", assign_project_story_path(current_project, story, {story: {assign: 1}}), role: "button", class: "btn btn-primary")%>
             <% end %>
           </td>
         <% end %>
