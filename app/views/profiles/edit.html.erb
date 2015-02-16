@@ -1,86 +1,73 @@
-
 <h3>Update Profile</h3>
 <div class='row'>
-<%= form_for current_user, method: "POST", :url => { controller: 'profiles', :action => "update" }, html: {class: "col-md-6"} do |f| %>
-  <% if current_user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(current_user.errors.count, "error") %> prohibited this story from being saved:</h2>
-
-      <ul>
-      <% current_user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+  <%= form_for current_user, method: "POST", :url => { controller: 'profiles', :action => "update" }, html: {class: "col-md-6"} do |f| %>
+    <% if current_user.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(current_user.errors.count, "error") %> prohibited this story from being saved:</h2>
+        <ul>
+          <% current_user.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="form-group">
+      <%= f.label :name%><br>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :email%><br>
+      <%= f.email_field :email, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :password, "New Password"%><br>
+      <%= f.password_field :password, class: "form-control" %>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <span id="8char" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> 8 Characters Long<br>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :password_confirmation, "Password Confirmation"%><br>
+      <%= f.password_field :password_confirmation, class: "form-control" %>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <span id="pwmatch" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> Passwords Match
+        </div>
+    </div>
+    <div class="actions">
+      <%= f.submit "Save", class: "btn btn-success", id: "submit1" %>
     </div>
   <% end %>
-
-  <div class="form-group">
-    <%= f.label :name%><br>
-    <%= f.text_field :name, class: "form-control" %>
-  </div>
-  
-  <div class="form-group">
-    <%= f.label :email%><br>
-    <%= f.email_field :email, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :password, "New Password"%><br>
-    <%= f.password_field :password, class: "form-control" %>
-  </div>
-  <div class="row">
-        <div class="col-sm-6">
-          <span id="8char" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> 8 Characters Long<br>
-        </div>
-    </div>
-  
-  <div class="form-group">
-    <%= f.label :password_confirmation, "Password Confirmation"%><br>
-    <%= f.password_field :password_confirmation, class: "form-control" %>
-  </div>
-   <div class="row">
-        <div class="col-sm-12">
-          <span id="pwmatch" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> Passwords Match
-        </div>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Save", class: "btn btn-success", id: "submit1" %>
-  </div>
-
-<% end %>
-
 </div>
-
-
 <script type="text/javascript">
-      
-$(document).ready(function(){
-    $("input[type=password]").keyup(function(){ 
-  if($("#user_password").val().length >= 8){
-      submit1.disabled=true;
-    $("#8char").removeClass("glyphicon-remove");
-    $("#8char").addClass("glyphicon-ok");
-    $("#8char").css("color","#00A41E");
-  }else{
-      submit1.disabled=true;
-    $("#8char").removeClass("glyphicon-ok");
-    $("#8char").addClass("glyphicon-remove");
-    $("#8char").css("color","#FF0004");
-  }
-  if(($("#user_password").val() == $("#user_password_confirmation").val()) && $("#user_password").val()!="" ){
-    submit1.disabled=false;
-    $("#pwmatch").removeClass("glyphicon-remove");
-    $("#pwmatch").addClass("glyphicon-ok");
-    $("#pwmatch").css("color","#00A41E");
-    
-  }else{
-    $("#pwmatch").removeClass("glyphicon-ok");
-    $("#pwmatch").addClass("glyphicon-remove");
-    $("#pwmatch").css("color","#FF0004");
-  }
+  $(document).ready(function(){
+      $("input[type=password]").keyup(function(){
+    if($("#user_password").val().length >= 8){
+        submit1.disabled=true;
+      $("#8char").removeClass("glyphicon-remove");
+      $("#8char").addClass("glyphicon-ok");
+      $("#8char").css("color","#00A41E");
+    }else{
+        submit1.disabled=true;
+      $("#8char").removeClass("glyphicon-ok");
+      $("#8char").addClass("glyphicon-remove");
+      $("#8char").css("color","#FF0004");
+    }
+    if(($("#user_password").val() == $("#user_password_confirmation").val()) && $("#user_password").val()!="" ){
+      submit1.disabled=false;
+      $("#pwmatch").removeClass("glyphicon-remove");
+      $("#pwmatch").addClass("glyphicon-ok");
+      $("#pwmatch").css("color","#00A41E");
+  
+    }else{
+      $("#pwmatch").removeClass("glyphicon-ok");
+      $("#pwmatch").addClass("glyphicon-remove");
+      $("#pwmatch").css("color","#FF0004");
+    }
+    });
+  
   });
-
-});
-    
-    </script>
+</script>

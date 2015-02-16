@@ -1,44 +1,41 @@
 <div class='row'>
-	<h3>Dashboard</h3>
-	<ul class='list-group'>
-		<li class='list-group-item'>
-			<%=link_to("Admin Management",admins_path)%>
-			<ul class='list-group'>
-				<li class='list-group-item'>
-				<%=link_to("Add Admins",new_admin_path)%>
-				</li>
-				<li class='list-group-item'>
-				<%=link_to("List Admins", admins_path)%>
-				</li>
-			</ul>
-		</li>
-		<li class='list-group-item'>
-			<%=link_to("Developers", developers_path)%>
-			<ul class='list-group'>
-				<li class='list-group-item'>
-				<%=link_to("Add Developers",new_developer_path)%>
-				</li>
-				<li class='list-group-item'>
-				<%=link_to("List Developers", developers_path)%>
-				</li>
-			</ul>
-		</li>
-		<li class='list-group-item'>
-			<%=link_to("Projects", projects_path)%>
-
-			<ul class='list-group'>
-				<li class='list-group-item'>
-				<%=link_to("Add/Remove Developers To Projects", projects_path)%>
-				</li>
-
-				<li class='list-group-item'>
-				<%=link_to("Add Projects",new_project_path)%>
-				</li>
-
-			</ul>
-		</li>
-		<li class='list-group-item'>
-			<%=link_to("Story Board", admins_path)%>
-		</li>
-	</ul>
+  <h3>Dashboard</h3>
+  <ul class='list-group'>
+    <li class='list-group-item'>
+      <%=link_to("Admin Management",admins_path)%>
+      <ul class='list-group'>
+        <li class='list-group-item'>
+          <%=link_to("Add Admins",new_admin_path)%>
+        </li>
+        <li class='list-group-item'>
+          <%=link_to("List Admins", admins_path)%>
+        </li>
+      </ul>
+    </li>
+    <li class='list-group-item'>
+      <%=link_to("Developers", developers_path)%>
+      <ul class='list-group'>
+        <li class='list-group-item'>
+          <%=link_to("Add Developers",new_developer_path)%>
+        </li>
+        <li class='list-group-item'>
+          <%=link_to("List Developers", developers_path)%>
+        </li>
+      </ul>
+    </li>
+    <li class='list-group-item'>
+      <%=link_to("Projects", projects_path)%>
+      <ul class='list-group'>
+        <li class='list-group-item'>
+          <%=link_to("Add/Remove Developers To Projects", projects_path)%>
+        </li>
+        <li class='list-group-item'>
+          <%=link_to("Add Projects",new_project_path)%>
+        </li>
+      </ul>
+    </li>
+    <li class='list-group-item'>
+      <%=link_to("Story Board", admins_path)%>
+    </li>
+  </ul>
 </div>

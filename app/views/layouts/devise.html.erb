@@ -1,32 +1,23 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Storyboard</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-
-<body class="dark-bg">
-		
-		<div class="container">
-		<div class="row" align=center>	
-				<div class="nav">
-					<h2>Story Board</h2>  
-				</div>				
-			</div>
-
-			<%= yield %>
-
-		</div>	
-		
-	</body>
-
-
-
-
-<br><br>
-</body>
+  <head>
+    <title>Storyboard</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <body class="dark-bg">
+      <div class="container">
+        <div class="row" align=center>
+          <div class="nav">
+            <h2>Story Board</h2>
+          </div>
+        </div>
+        <%= yield %>
+      </div>
+    </body>
+    <br>
+    <br>
+  </body>
 </html>
-

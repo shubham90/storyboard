@@ -1,36 +1,23 @@
 <div class="row">
-
-  <h3><%=current_project.name%></h3>  
-
-
-<div class="col-lg-9">
-  <div class="row">
-  
-
-  
-    <%= form_tag search_project_stories_path(current_project), :method => 'get' do %>
-      <div class="col-lg-9">
-      <%= text_field_tag :query, params[:query],  class: "pull-left form-control", placeholder: "Search for..."%>
-      </div>
-      <div class="col-lg-3">
-      <%= submit_tag "Go!", :name => nil, class: "btn btn-default"  %>
-      </div> 
-
-    <% end %>
-
-</div>  
-</div>
-
-<div class="col-lg-3">
-  
+  <h3><%=current_project.name%></h3>
+  <div class="col-lg-9">
+    <div class="row">
+      <%= form_tag search_project_stories_path(current_project), :method => 'get' do %>
+        <div class="col-lg-9">
+          <%= text_field_tag :query, params[:query],  class: "pull-left form-control", placeholder: "Search for..."%>
+        </div>
+        <div class="col-lg-3">
+          <%= submit_tag "Go!", :name => nil, class: "btn btn-default"  %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-lg-3">
     <%  if !current_user.is_admin? and assigned_project?%>
-    <%= link_to("New Story", new_project_story_path(current_project), role: "button", class: "btn btn-primary btn-small pull-right")%>
-     <% end %> 
-     
+      <%= link_to("New Story", new_project_story_path(current_project), role: "button", class: "btn btn-primary btn-small pull-right")%>
+    <% end %>
+  </div>
 </div>
-</div>
-
-
 <div class="row">
   <br>
   <% if flash[:notice] %>
@@ -39,16 +26,13 @@
   <% if flash[:alert] %>
     <div class="alert alert-danger" role="alert"><%= flash[:alert] %></div>
   <% end %>
-
-
   <ul class="nav nav-tabs">
     <li role="presentation" class=<%=params["scope"].nil? ? "active" : "" %>><%=link_to("All", project_stories_path)%></li>
     <%  if !current_user.is_admin?%>
-    <li role="presentation" class=<%=params["scope"]=='assigned' ? "active" : "" %>><%=link_to("Assigned", project_stories_path({scope: "assigned"}) )%></li>
-    <li role="presentation" class=<%=params["scope"]=='signup' ? "active" : "" %>><%=link_to("Sign UP", project_stories_path({scope: "signup"}) )%></li>
-     <% end %> 
+      <li role="presentation" class=<%=params["scope"]=='assigned' ? "active" : "" %>><%=link_to("Assigned", project_stories_path({scope: "assigned"}) )%></li>
+      <li role="presentation" class=<%=params["scope"]=='signup' ? "active" : "" %>><%=link_to("Sign UP", project_stories_path({scope: "signup"}) )%></li>
+    <% end %>
   </ul>
-
   <table border='1' class="table table-bordered table-striped">
     <tr>
       <th class="active"><b>Name</b></th>
@@ -57,10 +41,9 @@
       <th class="active"><b>Signed-up Developers</b></th>
       <th class="active"><b>Stage</b></th>
       <%if(!current_user.is_admin?)%>
-      <th class="active"><b>Assigned Stories</b></th>
+        <th class="active"><b>Assigned Stories</b></th>
       <% end %>
     </tr>
-
     <% @stories.each do |story| %>
       <tr>
         <td><%= link_to(story.name, project_story_path(current_project, story))%></td>
@@ -69,24 +52,15 @@
         <td><%=story.signup_user ? story.signup_user.name : "" %></td>
         <td><%=story.stage%></td>
         <%if(!current_user.is_admin? and assigned_project?%>
-        <td>
-          <%if story.developers.exists?(current_user.id)%>
-            <%= link_to("UnAssign", assign_project_story_path(current_project, story, {story: {assign: 0}}))%>  
-          <%else%>
-            <%= link_to("Assign", assign_project_story_path(current_project, story, {story: {assign: 1}}))%>
-          <%end%>
-        </td>
+          <td>
+            <%if story.developers.exists?(current_user.id)%>
+              <%= link_to("UnAssign", assign_project_story_path(current_project, story, {story: {assign: 0}}))%>
+            <%else%>
+              <%= link_to("Assign", assign_project_story_path(current_project, story, {story: {assign: 1}}))%>
+            <%end%>
+          </td>
         <%end%>
       </tr>
     <% end %>
   </table>
 </div>
-
-
-
-
-
-
-
-
-

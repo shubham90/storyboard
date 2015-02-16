@@ -1,52 +1,30 @@
 <div class="col-md-6">
-			  <div class="form-group">
-				<label for="exampleProject1">Project</label>
-				<p>
-				<%=@project.name%>
-				</p>
-			  </div>
-			  <div class="form-group">
-				<label for="exampleName1">Description</label>
-				<p>
-				<%=@project.description%>
-				</p>
-			  </div>
-			  <div class="form-group">
-				<label for="exampleDescription1">List of Assigned Developers</label>
-				<p><%=@project.users.map(&:name).join(',')%></p>
-			  </div>
-			  
-			  
-			  
-					<br><br>
-			<%if(current_user.is_admin?)%>
-			  	<%= link_to 'Destroy', project_path(@project),
+  <div class="form-group">
+    <label for="exampleProject1">Project</label>
+    <p>
+      <%=@project.name%>
+    </p>
+  </div>
+  <div class="form-group">
+    <label for="exampleName1">Description</label>
+    <p>
+      <%=@project.description%>
+    </p>
+  </div>
+  <div class="form-group">
+    <label for="exampleDescription1">List of Assigned Developers</label>
+    <p><%=@project.users.map(&:name).join(',')%></p>
+  </div>
+  <br>
+  <br>
+  <%if(current_user.is_admin?)%>
+    <%= link_to 'Destroy', project_path(@project),
                     method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger", role: "button"  %>
-         
-                <%= link_to 'Edit Project', edit_project_path(@project),
+    <%= link_to 'Edit Project', edit_project_path(@project),
                     class: "btn btn-primary btn-md", role: "button"  %>
-
-				<%= link_to 'Add/Remove Developers', edit_assign_developers_project_path(@project),
+    <%= link_to 'Add/Remove Developers', edit_assign_developers_project_path(@project),
                     class: "btn btn-primary btn-md", role: "button"  %>
-
-			  	
-			  <% end %>
-			  
-			<a href="javascript:history.back()"><button class="btn btn-default ">Back</button></a>
-			</div>
-			<br>
-			
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <% end %>
+  <a href="javascript:history.back()"><button class="btn btn-default ">Back</button></a>
+</div>
+<br>
