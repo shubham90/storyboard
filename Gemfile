@@ -27,8 +27,10 @@ group :development, :test do
   gem 'web-console', '~> 2.0'
   gem 'spring'
   gem 'factory_girl'
+  gem 'faker'
   gem 'rspec-rails', '~> 3.0'
   gem 'quiet_assets'
+  gem "shoulda-matchers", "~> 2.7.0"
 end
 
 gem 'pg'

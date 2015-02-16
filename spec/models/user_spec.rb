@@ -1,5 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe User, type: :model do
+  describe 'Associations' do
+    it { is_expected.to have_many(:stories) }
+    it { is_expected.to have_many(:developer_stories) }
+
+    it { is_expected.to belong_to(:project) }
+  end
 end

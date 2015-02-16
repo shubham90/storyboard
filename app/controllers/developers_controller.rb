@@ -14,6 +14,7 @@ class DevelopersController < ApplicationController
      @developer.role = ROLES[:developer]
 
     if @developer.save
+      UserMailer.welcome(@developer).deliver
       redirect_to developers_path, notice: 'Developer was successfully created'
     else
       render action: 'new'
