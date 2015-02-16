@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:show, :destroy, :edit, :update]
-  before_action :set_unassigned_developers, only: [:new, :edit]
+  before_action :set_project, only: [:show, :destroy, :edit, :update, :edit_assign_developers, :assign_developers, :unassign_developers]
+  before_action :set_unassigned_developers, only: [:new, :edit_assign_developers]
+  before_action :authenticate_admin!, only:[:edit_assign_developers, :assign_developers, :unassign_developers]
   def index
     @projects = Project.all
   end
@@ -29,12 +30,32 @@ class ProjectsController < ApplicationController
     else
       render action: 'new'
     end
-
   end
 
 
-
   def edit
+  end
+
+  def edit_assign_developers
+
+  end
+
+  def assign_developers
+    @project.users << User.find(params["user_id"])
+    if @project.save
+      redirect_to edit_assign_developers_project_path, notice: 'Developer was added successfully.'
+    else
+      redirect_to edit_assign_developers_project_path, alert: 'Error in assigning developer'
+    end
+  end
+
+  def unassign_developers
+    User.find(params["user_id"]).update(project_id: nil)
+    if @project.save
+      redirect_to edit_assign_developers_project_path, notice: 'Developer was removed successfully.'
+    else
+      redirect_to edit_assign_developers_project_path, alert: 'Error in assigning developer'
+    end
   end
 
   def update
@@ -50,7 +71,7 @@ class ProjectsController < ApplicationController
   end
 
   def set_unassigned_developers
-    @unassigned_developers=User.where(role: ROLES[:developer], project_id: nil)
+    @unassigned_developers = User.developers.where(project_id: nil)
   end
 
 

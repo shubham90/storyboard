@@ -26,7 +26,7 @@
 
     <% @admins.each do |admin| %>
       <tr>
-        <td><%= link_to(admin.name, admin_path(admin))%></td>
+        <td><%= admin.name%></td>
         <td><%= admin.email%></td>       
         <td><%= link_to 'Delete Admin', admin_path(admin),
                     method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger", role: "button"  %></td>

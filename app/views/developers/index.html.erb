@@ -27,9 +27,9 @@
 
     <% @developers.each do |developer| %>
       <tr>
-        <td><%= link_to(developer.name, developer_path(developer))%></td>
-        <td><%=developer.email%></td>       
-        <td><%=developer.project.try(:name)%></td>
+        <td><%= developer.name%></td>
+        <td><%= developer.email%></td>       
+        <td><%= developer.project.try(:name)%></td>
         <td><%= link_to 'Delete Developer', developer_path(developer),
                     method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger", role: "button"  %></td>
       </tr>

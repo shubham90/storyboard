@@ -25,6 +25,9 @@
 				<tr>
 					<th class="active"><b>Title</b></a></th>
 					<th class="active"><b>Description</b></th>
+					<%if current_user.is_admin?%>
+					<th class="active"><b>Add/Remove Developers</b></th>
+					<%end%>
 					<th class="active"><b>Stories</b></th>
 				
 				</tr>
@@ -33,6 +36,9 @@
 				<tr>
 					<td><%= link_to(project.name, project_path(project))%></td>
 					<td><%=project.description%></td>
+					<%if current_user.is_admin?%>
+					<td><%= link_to("Add/Remove Developers", edit_assign_developers_project_path(project))%></td>
+					<%end%>
 					<td><%= link_to("View Stories", project_stories_path(project))%></td>
 				</tr>
 				<% end %>

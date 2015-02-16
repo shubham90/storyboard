@@ -23,8 +23,12 @@
 			  	<%= link_to 'Destroy', project_path(@project),
                     method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger", role: "button"  %>
          
-                <%= link_to 'Add Developers', edit_project_path(@project),
+                <%= link_to 'Edit Project', edit_project_path(@project),
                     class: "btn btn-primary btn-md", role: "button"  %>
+
+				<%= link_to 'Add/Remove Developers', edit_assign_developers_project_path(@project),
+                    class: "btn btn-primary btn-md", role: "button"  %>
+
 			  	
 			  <% end %>
 			  

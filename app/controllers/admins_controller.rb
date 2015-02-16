@@ -13,7 +13,7 @@ class AdminsController < ApplicationController
      @admin = User.new(admin_params)
      @admin.role = ROLES[:admin]
 
-    if @admin.save
+    if @admin.save!
       redirect_to admins_path, notice: 'Admin was successfully created'
     else
       render action: 'new'
@@ -22,7 +22,6 @@ class AdminsController < ApplicationController
 
   def destroy
     @admin.destroy
-
     redirect_to admins_path, notice: 'Admin was successfully deleted'
   end
 
@@ -37,7 +36,5 @@ class AdminsController < ApplicationController
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
 
-  def authenticate_admin!
-    !current_user.is_admin? and redirect_to(root_path)
-  end
+  
 end

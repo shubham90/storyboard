@@ -4,26 +4,34 @@ Rails.application.routes.draw do
     root to: "devise/sessions#new"
   end
 
-  resources :projects do 
+  resources :projects do
     resources :stories do
       member do
         get 'assign'
         get 'signup'
         get 'un_signup'
-      end 
-      collection do 
+      end
+      collection do
         get 'search'
       end
+    end
+    member do
+      get "edit_assign_developers"
+      post "assign_developers"
+      delete "unassign_developers"
     end
   end
   resources :developers
   resources :admins
+  resources :storyboards, only: [:index]
 
-  
-  get 'profile' => 'profiles#show' 
+
+
+  get 'profile' => 'profiles#show'
   get 'profile/edit' => 'profiles#edit'
   post 'profile' => 'profiles#update'
-  
+  get 'dashboard' => 'profiles#index'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

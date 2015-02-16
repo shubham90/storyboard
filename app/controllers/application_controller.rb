@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   layout :layout_by_resource
 
   def after_sign_in_path_for(resource)
-    projects_path
+   user_root_path
   end
 
 
@@ -20,7 +20,9 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  
+  def authenticate_admin!
+    !current_user.is_admin? and redirect_to(root_path)
+  end
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) << :name
@@ -32,7 +34,11 @@ class ApplicationController < ActionController::Base
   helper_method :current_project
 
   def user_root_path
-    projects_path
+    if current_user.is_admin?
+      dashboard_path
+    else
+      projects_path
+    end
   end
   helper_method :user_root_path
 end

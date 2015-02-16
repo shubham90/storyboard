@@ -1,0 +1,78 @@
+<h1>Story Board</h1>
+<hr>
+<div class="row">
+	<div class="col-lg-12">
+		<% @projects.each do |project|%>
+		
+		<h3><%= project.name %></h3>
+		<hr>
+		<h4>INCOMPLETE STORIES</h4>
+		<table class="table table-striped">
+			<tbody>
+				<tr>
+				<th>NAME</th>
+				<th>DESCRIPTION</th>
+				<th>POINTS</th>
+				<th>STAGE</th>
+				</tr>
+				<% project.stories.incomplete.each do |story|%>
+				<tr>
+					<td><%= story.name%></td>
+					<td><%= story.description%></td>
+					<td><%= story.points%></td>
+					<td><%= STAGES.invert[story.stage]%></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+		<hr>
+		<h4>INCOMPLETE STORIES</h4>
+		<table class="table table-striped">
+			<tbody>
+				<tr>
+				<th>NAME</th>
+				<th>DESCRIPTION</th>
+				<th>POINTS</th>
+				<th>STAGE</th>
+				</tr>
+				<%project.stories.complete.each do |story|%>
+				<tr>
+					<td><%= story.name%></td>
+					<td><%= story.description%></td>
+					<td><%= story.points%></td>
+					<td><%= STAGES.invert[story.stage]%></td>
+				</tr>
+				<% end %>
+			</tbody>		
+		</table>
+
+		<h4>SUMMARY</h4>
+		<div class="col-lg-3">
+		<table class="table table-striped">
+			<tbody>
+				<tr>
+					<th>
+						STAGE
+					</th>
+					<th>
+						TOTAL
+					</th>
+				</tr>
+				<% project.summary.each do |stage, total|%>
+				<tr>
+					<td>
+						<%= STAGES.invert[stage]%>
+					</td>
+					<td>
+						<%= total%>
+					</td>
+				</tr>
+				<%end%>
+			</tbody>
+		</table>
+		
+		</div>
+		
+		<% end %>
+	</div>
+</div>

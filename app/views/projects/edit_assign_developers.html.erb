@@ -1,0 +1,71 @@
+<h3> Project Developer Management </h3>
+<div class='row'>
+  <div class='row'>
+
+  <% if flash[:notice] %>
+    <div class="alert alert-success" role="alert"><%= flash[:notice] %></div>
+  <% end %>
+  <% if flash[:alert] %>
+    <div class="alert alert-danger" role="alert"><%= flash[:alert] %></div>
+  <% end %>
+  </div>
+  <div class="col-md-6">
+
+    <div class="form-group">
+      <label>Project</label>
+      <p>
+      <%=@project.name%>
+      </p>
+    </div>
+
+    <div class="form-group">
+      <label>Description</label>
+      <p>
+      <%=@project.description%>
+      </p>
+    </div>
+    
+    <div class="form-group">
+      <label>Assigned Developers</label>
+      <table border='1' class="table table-bordered table-striped">
+      <tr>
+        <th class="active"><b>Developer Name</b></a></th>
+        <th class="active"><b>Email</b></th>
+        <th class="active"><b>Remove Developer</b></th>
+      </tr>
+
+      <% if @project.users.each do |developer| %>
+        <tr>
+          <td><%= developer.name%></td>
+          <td><%= developer.email%></td>
+          <td><%= link_to 'Remove Developer', unassign_developers_project_path(@project, {user_id: developer.id}), method: :delete, data: { confirm: 'Are you sure?'}, class: "btn btn-danger", role: "button"  %></td>
+        </tr>
+      <% end%>
+    <% end %>
+    </table>
+    </div>
+
+     <div class="form-group">
+      <% if @unassigned_developers.present?%>
+      <%= form_tag(assign_developers_project_path(@project), {method: "POST"}) do %>
+      <div class='row'>
+        <div class="col-md-6">
+        <%= select_tag "user_id", options_from_collection_for_select(@unassigned_developers, "id", "name"), prompt: "Select Developer", class: 'form-control'%>
+        </div>
+        <div class="col-md-6">  
+        <%= submit_tag("Add Developer", class: 'btn btn-success')%> 
+        </div>
+        </div>
+      <% end %>
+      </p>
+      <% end %>
+    </div>
+    
+
+
+
+
+
+    </table>
+
+  </div>

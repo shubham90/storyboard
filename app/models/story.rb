@@ -1,6 +1,11 @@
 class Story < ActiveRecord::Base
 
-  
+  scope :complete, -> {where(stage: STAGES['Complete'] )}
+  scope :incomplete, -> {where(stage: (STAGES['Analysis']..STAGES['In Test']).to_a) }
+
+
+
+
   validates :name, presence: true
 
   belongs_to :project
@@ -11,5 +16,9 @@ class Story < ActiveRecord::Base
 
   def is_user_assigned?(user)
     self.developers.exists?(user)
+  end
+
+  def self.summary
+    group('stage').sum('points')
   end
 end
