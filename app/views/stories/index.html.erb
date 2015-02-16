@@ -51,15 +51,15 @@
         <td><%=story.points%></td>
         <td><%=story.signup_user ? story.signup_user.name : "" %></td>
         <td><%=story.stage%></td>
-        <%if(!current_user.is_admin? and assigned_project?%>
+        <%if(!current_user.is_admin? and assigned_project?)%>
           <td>
             <%if story.developers.exists?(current_user.id)%>
               <%= link_to("UnAssign", assign_project_story_path(current_project, story, {story: {assign: 0}}))%>
-            <%else%>
+            <%else %>
               <%= link_to("Assign", assign_project_story_path(current_project, story, {story: {assign: 1}}))%>
-            <%end%>
+            <% end %>
           </td>
-        <%end%>
+        <% end %>
       </tr>
     <% end %>
   </table>
