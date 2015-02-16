@@ -25,7 +25,7 @@
   <p><%=STAGES.invert[@story.stage].to_s%>
     <br>
     <br>
-    <%if !current_user.is_admin?%>
+    <%if !current_user.is_admin? and assigned_project?%>
       <%= link_to 'Edit', edit_project_story_path(current_project, @story), class: "btn btn-primary", role: "button" %>
       <% if current_user== @story.signup_user %>
         <%= link_to 'Unsign', un_signup_project_story_path(current_project, @story), class: "btn btn-danger", role: "button" %>

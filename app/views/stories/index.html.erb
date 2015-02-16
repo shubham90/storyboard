@@ -40,7 +40,7 @@
       <th class="active"><b>Points</b></th>
       <th class="active"><b>Signed-up Developers</b></th>
       <th class="active"><b>Stage</b></th>
-      <%if(!current_user.is_admin?)%>
+      <%if(!current_user.is_admin? and assigned_project?)%>
         <th class="active"><b>Assigned Stories</b></th>
       <% end %>
     </tr>
