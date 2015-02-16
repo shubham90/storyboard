@@ -1,7 +1,7 @@
 class StoriesController < ApplicationController
 
   before_action :set_story, only: [:show, :edit, :update, :destroy, :assign, :story, :signup, :un_signup]
-
+  before_action :assigned_project?, only: [:new, :edit, :update, :create, :destroy] 
   def index
     case params[:scope]
     when "assigned"

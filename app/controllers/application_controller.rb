@@ -41,4 +41,9 @@ class ApplicationController < ActionController::Base
     end
   end
   helper_method :user_root_path
+
+  def assigned_project?
+    current_project.id == current_user.project.id 
+  end
+  helper_method :assigned_project?
 end

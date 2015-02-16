@@ -23,7 +23,7 @@
 
 <div class="col-lg-3">
   
-    <%  if !current_user.is_admin?%>
+    <%  if !current_user.is_admin? and assigned_project?%>
     <%= link_to("New Story", new_project_story_path(current_project), role: "button", class: "btn btn-primary btn-small pull-right")%>
      <% end %> 
      
@@ -68,7 +68,7 @@
         <td><%=story.points%></td>
         <td><%=story.signup_user ? story.signup_user.name : "" %></td>
         <td><%=story.stage%></td>
-        <%if(!current_user.is_admin?)%>
+        <%if(!current_user.is_admin? and assigned_project?%>
         <td>
           <%if story.developers.exists?(current_user.id)%>
             <%= link_to("UnAssign", assign_project_story_path(current_project, story, {story: {assign: 0}}))%>  

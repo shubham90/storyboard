@@ -1,9 +1,10 @@
 <h1>Story Board</h1>
 <hr>
-<div class="row">
-	<div class="col-lg-12">
+
 		<br>
 		<% @projects.each do |project|%>
+		<div class="row">
+	<div class="col-lg-12">
 		
 		<h3><%= project.name %></h3>
 		<hr>
@@ -73,7 +74,7 @@
 		</table>
 		
 		</div>
-		
-		<% end %>
-	</div>
+		</div>
 </div>
+		<% end %>
+	
