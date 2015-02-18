@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   layout :layout_by_resource
 
   def after_sign_in_path_for(resource)
-   user_root_path
+    user_root_path
   end
 
 
@@ -37,13 +37,17 @@ class ApplicationController < ActionController::Base
     if current_user.is_admin?
       dashboard_path
     else
-      projects_path
+      if current_user.project.nil?
+        projects_path()
+      else
+        project_path(current_user.project)
+      end
     end
   end
   helper_method :user_root_path
 
   def assigned_project?
-    current_project.id == current_user.project.id 
+    current_project.id == current_user.project.id
   end
   helper_method :assigned_project?
 end
