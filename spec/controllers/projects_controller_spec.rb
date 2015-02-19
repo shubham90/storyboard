@@ -20,21 +20,21 @@ RSpec.describe ProjectsController, type: :controller do
   end
 end
 
-describe 'DELETE destroy' do 
-	before :each do 
-		@story = Project(:story) 
-	end 
-
-it "deletes the contact" do 
-	expect{ 
-		delete :destroy, id: @story 
-		}.to change(Story,:count).by(-1)
+	describe 'DELETE destroy' do 
+		before :each do 
+			@project = Project(:id) 
 		end 
 
-it "redirects to stories#index" do 
-	delete :destroy, id: @story
-	response.should redirect_to stories_url 
+	it "deletes the project" do 
+		expect{ 
+			delete :destroy, id: @project 
+			}.to change(Project,:count).by(-1)
+			end 
 
-end 
+	it "redirects to projects#index" do 
+		delete :destroy, id: @project
+		response.should redirect_to project_url 
+
+	end 
 end 
 end
