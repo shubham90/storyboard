@@ -18,18 +18,23 @@ RSpec.describe ProjectsController, type: :controller do
     	response.should render_template :show
     end
   end
-  describe "new" do
-  	it "assigns a new project to @project" do
-  		get :new
-  	end
-    it "renders the :new template"
-  end
-  describe "create" do
-  	context "with valid credentials of admin" do
-  	it "saves new project to the database" do
-  		post :create, contact: Project.attributes_for(:id)
-  		response.should render_template :new
-  	end
-    it "redirects to the :index template"
-  end
+end
+
+describe 'DELETE destroy' do 
+	before :each do 
+		@story = Project(:story) 
+	end 
+
+it "deletes the contact" do 
+	expect{ 
+		delete :destroy, id: @story 
+		}.to change(Story,:count).by(-1)
+		end 
+
+it "redirects to stories#index" do 
+	delete :destroy, id: @story
+	response.should redirect_to stories_url 
+
+end 
+end 
 end
