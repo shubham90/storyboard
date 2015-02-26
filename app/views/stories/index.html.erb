@@ -47,7 +47,7 @@
         <td><%=story.points%></td>
         <td><%=story.signup_user ? story.signup_user.name : "" %></td>
         <td><%=STAGES.invert[story.stage].to_s%></td>
-        <% if(!current_user.is_admin?)%>
+        <% if(!current_user.is_admin? and assigned_project?)%>
           <td>
             <%if story.signup_user == current_user%>
               <%= link_to("UnAssign/Unsignup", un_signup_project_story_path(current_project, story), role: "button", class: "btn btn-danger")%>

@@ -27,10 +27,10 @@
     <br>
     <%if !current_user.is_admin? and assigned_project?%>
       <%= link_to 'Edit', edit_project_story_path(current_project, @story), class: "btn btn-primary", role: "button" %>
-      <% if current_user== @story.signup_user %>
-        <%= link_to 'Unsign', un_signup_project_story_path(current_project, @story), class: "btn btn-danger", role: "button" %>
+      <% if current_user == @story.signup_user %>
+        <%= link_to 'Unsignup/Unassign', un_signup_project_story_path(current_project, @story), class: "btn btn-danger", role: "button" %>
       <% else %>
-        <%= link_to 'Sign Up', signup_project_story_path(current_project, @story), class: "btn btn-success", role: "button" %>
+        <%= link_to 'SignUp/Assign', signup_project_story_path(current_project, @story), class: "btn btn-success", role: "button" %>
       <%end%>
       <%= link_to 'Destroy', project_story_path(current_project, @story),
                     method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger", role: "button"  %>
