@@ -27,20 +27,16 @@
     <div class="alert alert-danger" role="alert"><%= flash[:alert] %></div>
   <% end %>
   <ul class="nav nav-tabs">
-    <li role="presentation" class=<%=params["scope"].nil? ? "active" : "" %>><%=link_to("All", project_stories_path)%></li>
-    <%  if !current_user.is_admin?%>
-      <li role="presentation" class=<%=params["scope"]=='assigned' ? "active" : "" %>><%=link_to("Assigned", project_stories_path({scope: "assigned"}) )%></li>
-      <li role="presentation" class=<%=params["scope"]=='signup' ? "active" : "" %>><%=link_to("Sign UP", project_stories_path({scope: "signup"}) )%></li>
-    <% end %>
+    <li role="presentation" class="active"><%=link_to("All", project_stories_path)%></li>
   </ul>
   <table border='1' class="table table-bordered table-striped">
     <tr>
       <th class="active"><b>Name</b></th>
       <th class="active"><b>Description</b></th>
       <th class="active"><b>Points</b></th>
-      <th class="active"><b>Signed-up Developers</b></th>
+      <th class="active"><b>Signed-up/Assigned Developers</b></th>
       <th class="active"><b>Stage</b></th>
-      <%if(!current_user.is_admin? and assigned_project?)%>
+      <% if !current_user.is_admin?%>
         <th class="active"><b>Assign/UnAssign</b></th>
       <% end %>
     </tr>
@@ -51,12 +47,12 @@
         <td><%=story.points%></td>
         <td><%=story.signup_user ? story.signup_user.name : "" %></td>
         <td><%=STAGES.invert[story.stage].to_s%></td>
-        <%if(!current_user.is_admin? and assigned_project?)%>
+        <% if(!current_user.is_admin?)%>
           <td>
-            <%if story.developers.exists?(current_user.id)%>
-              <%= link_to("UnAssign", assign_project_story_path(current_project, story, {story: {assign: 0}}), role: "button", class: "btn btn-danger")%>
+            <%if story.signup_user == current_user%>
+              <%= link_to("UnAssign/Unsignup", un_signup_project_story_path(current_project, story), role: "button", class: "btn btn-danger")%>
             <%else %>
-              <%= link_to("Assign", assign_project_story_path(current_project, story, {story: {assign: 1}}), role: "button", class: "btn btn-primary")%>
+              <%= link_to("Assign/Signup", signup_project_story_path(current_project, story), role: "button", class: "btn btn-primary")%>
             <% end %>
           </td>
         <% end %>

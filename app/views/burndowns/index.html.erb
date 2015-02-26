@@ -1,6 +1,4 @@
 <h1>Burndown Chart</h1>
-
-
 <%require 'gchart'%>
 <%
 data_x= [0,0]
@@ -20,10 +18,8 @@ burndown_chart = Gchart.line(
             :axis_labels => [["|Analysis|Ready for Dev|In Dev|Dev Complete|In Test|Complete"]],
             )
 %>
-
 <div align="left" class="container">
-<br/>
-      <img src="<%=burndown_chart%>"/>
-
+  <br/>
+  <img src="<%=burndown_chart%>"/>
 </div>
 <a href="javascript:history.back()"><button class="btn btn-default ">Back</button></a>

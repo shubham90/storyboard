@@ -10,8 +10,8 @@ class DevelopersController < ApplicationController
   end
 
   def create
-     @developer = User.new(developer_params)
-     @developer.role = ROLES[:developer]
+    @developer = User.new(developer_params)
+    @developer.role = ROLES[:developer]
 
     if @developer.save
       UserMailer.welcome(@developer).deliver

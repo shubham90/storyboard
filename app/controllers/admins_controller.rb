@@ -10,8 +10,8 @@ class AdminsController < ApplicationController
   end
 
   def create
-     @admin = User.new(admin_params)
-     @admin.role = ROLES[:admin]
+    @admin = User.new(admin_params)
+    @admin.role = ROLES[:admin]
 
     if @admin.save!
       redirect_to admins_path, notice: 'Admin was successfully created'
@@ -36,5 +36,5 @@ class AdminsController < ApplicationController
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
 
-  
+
 end
