@@ -49,13 +49,17 @@ class StoriesController < ApplicationController
   end
 
   def signup
-    current_project.stories.where(signup_user: current_user).update_all(signup_user_id: nil)
-    @story.update(signup_user_id: current_user.id)
-    redirect_to project_stories_path, notice: 'Story was successfully signuped'
+    current_user.stories = []
+    @story.developers << current_user
+    
+    #current_project.stories.where(signup_user: current_user).update_all(signup_user_id: nil)
+    #@story.update(signup_user_id: current_user.id)
+    redirect_to project_stories_path, notice: 'Story was successfully Signuped/Assigned'
   end
 
   def un_signup
-    current_project.stories.where(signup_user: current_user).update_all(signup_user_id: nil)
+    current_user.stories = []
+    #current_project.stories.where(signup_user: current_user).update_all(signup_user_id: nil)
     redirect_to project_stories_path, notice: 'Story was successfully unsignuped'
   end
 

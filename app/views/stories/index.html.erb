@@ -45,11 +45,11 @@
         <td><%= link_to(story.name, project_story_path(current_project, story))%></td>
         <td><%=story.description%></td>
         <td><%=story.points%></td>
-        <td><%=story.signup_user ? story.signup_user.name : "" %></td>
+        <td><%=story.developers.map(&:name).join(',') %></td>
         <td><%=STAGES.invert[story.stage].to_s%></td>
         <% if(!current_user.is_admin? and assigned_project?)%>
           <td>
-            <%if story.signup_user == current_user%>
+            <%if story.is_user_assigned?(current_user)%>
               <%= link_to("UnAssign/Unsignup", un_signup_project_story_path(current_project, story), role: "button", class: "btn btn-danger")%>
             <%else %>
               <%= link_to("Assign/Signup", signup_project_story_path(current_project, story), role: "button", class: "btn btn-primary")%>
